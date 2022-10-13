@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "electronicos_items")
+@Table(name = "electricos_items")
 public class ElectricosVo implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -29,10 +29,10 @@ public class ElectricosVo implements Serializable{
 	@Column(name = "tipo_electricos_item", nullable = false , length = 40)
 	private String tipo_parte_electricos;
 	
-	@Column(name = "cantidaddisponible_electricos_item", nullable = false , length = 800)
+	@Column(name = "cantidadDisp_electricos_item", nullable = false , length = 800)
 	private int cantidad_disponible_electricos;
 	
-	@Column(name = "cantidadconsumida_electricos_item", nullable = false , length = 800)
+	@Column(name = "cantidadCons_electricos_item", nullable = false , length = 800)
 	private int cantidad_consumida_electricos;
 	
 	@Column(name = "ubicacion_electricos_item", nullable = false , length = 250)

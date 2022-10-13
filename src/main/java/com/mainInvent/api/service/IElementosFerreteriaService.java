@@ -16,9 +16,9 @@ public interface IElementosFerreteriaService {
 	
 	public Optional<ElementosFerrerteriaVo> findByID(Long id);
 	
-	public Iterable<ElementosFerrerteriaVo> findByName(String nombre);
+	public Optional<ElementosFerrerteriaVo> encontrarPorNombre(String nombre);
 	
-	public Iterable<ElementosFerrerteriaVo> findByType(String tipo);
+	public Iterable<ElementosFerrerteriaVo> encontrarPorTipo(String tipo);
 	
 	
 	public ElementosFerrerteriaVo save(ElementosFerrerteriaVo usuario);

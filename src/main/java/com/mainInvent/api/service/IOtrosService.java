@@ -4,7 +4,6 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
 import com.mainInvent.api.entity.OtrosVo;
 
 
@@ -16,10 +15,9 @@ public interface IOtrosService {
 	
 	public Optional<OtrosVo> findByID(Long id);
 	
-	public Iterable<OtrosVo> findByNombre_parte_otros(String nombre);
+	public Iterable<OtrosVo> encontrarPorTipo(String tipo);
 	
-	public Iterable<OtrosVo> findByTipo_parte_otros(String tipo);
-	
+	public Optional<OtrosVo> encontrarPornombre(String nombre);
 	
 	public OtrosVo save(OtrosVo otro_item);
 	

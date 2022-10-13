@@ -47,17 +47,17 @@ public class OtrosServiceImpl implements IOtrosService{
 	public void deleteById(Long id) {
 		repoOtros.deleteById(id);
 	}
-
+	
 	@Override
 	@Transactional(readOnly = true)
-	public Iterable<OtrosVo> findByNombre_parte_otros(String nombre) {
-		return null;
+	public Optional<OtrosVo> encontrarPornombre(String nombre) {
+		return repoOtros.findByNombre_parte_otros(nombre);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Iterable<OtrosVo> findByTipo_parte_otros(String tipo) {
-		return null;
+	public Iterable<OtrosVo> encontrarPorTipo(String tipo) {
+		return repoOtros.findByTipo_parte_otros(tipo);
 	}
 
 }
