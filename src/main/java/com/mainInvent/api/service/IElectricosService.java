@@ -16,12 +16,12 @@ public interface IElectricosService {
 	
 	public Optional<ElectricosVo> findByID(Long id);
 	
-	public Iterable<ElectricosVo> findByName(String nombre);
+	public Iterable<ElectricosVo> encontrarPorNombre(String nombre);
 	
-	public Iterable<ElectricosVo> findByType(String tipo);
+	public Iterable<ElectricosVo> encontrarPorTipo(String tipo);
 	
 	
-	public ElectricosVo save(ElectricosVo usuario);
+	public ElectricosVo save(ElectricosVo itemelectricos);
 	
 	public void deleteById(Long id);
 }

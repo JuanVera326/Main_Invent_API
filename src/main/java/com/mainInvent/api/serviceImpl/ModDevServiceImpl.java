@@ -48,7 +48,7 @@ public class ModDevServiceImpl implements IModDevService{
 
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<ModDevVo> encontrarPorNombre(String nombre) {
+	public Iterable<ModDevVo> encontrarPorNombre(String nombre) {
 		return modDevRepo.findByNombre_partemoddev(nombre);
 	}
 

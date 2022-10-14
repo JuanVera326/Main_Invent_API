@@ -28,18 +28,28 @@ public class ElementosFerreteriaRestController {
 	
 	@PostMapping("/eleferre")
 	public ResponseEntity<?> saveEleFerre(@RequestBody ElementosFerrerteriaVo eleferre){
+		
+		Optional<ElementosFerrerteriaVo> otro = eleFerreService.findByID(eleferre.getId_parte_elementosferreteria());
+		
+		if (otro.isPresent()) {
+			String msj = "El item de categoria Elementos Ferrerteria ya esta registrado con este id";
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msj);
+		}
+		
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(eleFerreService.save(eleferre));
 	}
 	
 	@GetMapping("/eleferre/{id}")
 	public ResponseEntity<?> getEleFerre(@PathVariable(value = "id") Long eleferre_id){
 		
-		Optional<ElementosFerrerteriaVo> oEleferre = eleFerreService.findByID(eleferre_id);
+		Optional<ElementosFerrerteriaVo> oOtros = eleFerreService.findByID(eleferre_id);
 		
-		if (!oEleferre.isPresent()){
-			return ResponseEntity.notFound().build();
+		if (!oOtros.isPresent()){
+			String msj = "El item de categoria Elementos Ferrerteria  con id "+ eleferre_id +" no esta registrado";
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msj);
 		}
-		return ResponseEntity.ok(oEleferre);
+		
+		return ResponseEntity.ok(oOtros);
 	} 
 	
 	@PutMapping("/eleferre/{id}")
@@ -47,9 +57,10 @@ public class ElementosFerreteriaRestController {
 		
 		Optional<ElementosFerrerteriaVo> eleferreOpti = eleFerreService.findByID(eleferre_id);
 		
-		if(!eleferreOpti.isPresent()){
-			return ResponseEntity.notFound().build();
-        }
+		if (!eleferreOpti.isPresent()) {
+			String msj = "El item de categoria Elementos Ferrerteria con id "+ eleferre_id +" no esta registrado";
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msj);
+		}
 		
 		eleferreOpti.get().setNombre_parte_elementosferreteria(eleferre.getNombre_parte_elementosferreteria());
 		eleferreOpti.get().setImagen_parte_elementosferreteria(eleferre.getImagen_parte_elementosferreteria());
@@ -64,13 +75,28 @@ public class ElementosFerreteriaRestController {
 		
 	}
 	
-	@DeleteMapping("/eleferre/{id}")
+	@DeleteMapping("/eleferre/delete/{id}")
 	public ResponseEntity<?> deleteEleFerre(@PathVariable(value = "id") Long id){
+		
 		if (!eleFerreService.findByID(id).isPresent()) {
-			ResponseEntity.notFound().build();
+			String msj = "El item de categoria Elementos Ferrerteria con id " + id +" que desea eliminar no ha sido encontrado";
+			
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msj);
 		}
+		
 		eleFerreService.deleteById(id);
-		return ResponseEntity.ok().build();
+		
+		Optional<ElementosFerrerteriaVo> item = eleFerreService.findByID(id);
+		
+		if (item.isPresent()) {
+			
+			String msj = "El item no se ha podido eliminar";
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msj);
+			
+		}else {
+			String msj = "Item de categoria Elementos Ferrerteria eliminado con exito";
+			return ResponseEntity.status(HttpStatus.ACCEPTED).body(msj);
+		}
 	}
 	
 	@GetMapping("/eleferre")
@@ -82,8 +108,12 @@ public class ElementosFerreteriaRestController {
 	}
 	
 	@GetMapping("/eleferre/name/{name}")
-	public ResponseEntity<?> getByName(@PathVariable String name){
-	  return ResponseEntity.ok(eleFerreService.encontrarPorNombre(name));
+	public List<ElementosFerrerteriaVo> getByName(@PathVariable String name){
+		
+		List<ElementosFerrerteriaVo> usuariosList = StreamSupport
+				.stream(eleFerreService.encontrarPorNombre(name).spliterator(), false).collect(Collectors.toList());
+		
+		return usuariosList;
 	}
 	
 	@GetMapping("/eleferre/type/{tipo}")

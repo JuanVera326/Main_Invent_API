@@ -25,12 +25,22 @@ import com.mainInvent.api.service.IUsuarioService;
 @RequestMapping("/api")
 public class UsuarioRestController {
 	
+	
 	@Autowired
 	private IUsuarioService usuarioService;
 	
 	@PostMapping("/usuarios")
 	public ResponseEntity<?> saveNewUsuario(@RequestBody UsuarioVo usuario){
+		
+		Optional<UsuarioVo> user = usuarioService.findByID(usuario.getId());
+		
+		if (user.isPresent()) {
+			String msj = "El usuario ya esta registrado con este id";
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msj);
+		}
+		
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(usuarioService.save(usuario));
+	
 	}
 	
 	
@@ -40,7 +50,8 @@ public class UsuarioRestController {
 		Optional<UsuarioVo> oUsuario = usuarioService.findByID(usuario_id);
 		
 		if (!oUsuario.isPresent()) {
-			return ResponseEntity.notFound().build();
+			String msj = "El usuario con id "+ usuario_id +" no esta registrado";
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msj);
 		}
 		
 		return ResponseEntity.ok(oUsuario);
@@ -53,7 +64,8 @@ public class UsuarioRestController {
 		Optional<UsuarioVo> usuarioOpti = usuarioService.findByID(id);
 		
 		if (!usuarioOpti.isPresent()) {
-			return ResponseEntity.notFound().build();
+			String msj = "El usuario con id "+ id +" no esta registrado";
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msj);
 		}
 		
 		//BeanUtils.copyProperties(usuario, usuarioOpti.getClass());
@@ -75,11 +87,24 @@ public class UsuarioRestController {
 	public ResponseEntity<?> deleteUsuario(@PathVariable Long id){
 		
 		if (!usuarioService.findByID(id).isPresent()) {
-			ResponseEntity.notFound().build();
+			String msj = "El usuario con id " + id +" que desea eliminar no ha sido encontrado";
+			
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msj);
 		}
 		
 		usuarioService.deleteById(id);
-		return ResponseEntity.ok().build();
+		
+		Optional<UsuarioVo> user = usuarioService.findByID(id);
+		
+		if (user.isPresent()) {
+			
+			String msj = "El usuario no se ha podido eliminar";
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msj);
+			
+		}else {
+			String msj = "Usuario eliminado con exito";
+			return ResponseEntity.status(HttpStatus.ACCEPTED).body(msj);
+		}
 	}
 	
 	
@@ -91,4 +116,23 @@ public class UsuarioRestController {
 		
 		return usuariosList;
 	}
+	
+	@GetMapping("/usuarios/name/{name}")
+	public List<UsuarioVo> findByName(@PathVariable String name){
+		
+		List<UsuarioVo> usuariosList = StreamSupport
+				.stream(usuarioService.encontrarPorNombre(name).spliterator(), false).collect(Collectors.toList());
+		
+		return usuariosList;
+	}
+	
+	@GetMapping("/usuarios/cargo/{cargo}")
+	public List<UsuarioVo> getUserByCargo(@PathVariable String cargo){
+		
+		List<UsuarioVo> usuariosList = StreamSupport
+				.stream(usuarioService.encontrarPorCargo(cargo).spliterator(), false).collect(Collectors.toList());
+		
+		return usuariosList;
+	}
+	
 }

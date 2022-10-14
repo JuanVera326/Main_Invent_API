@@ -48,4 +48,16 @@ public class UsuarioServiceImpl implements IUsuarioService{
 		repoUsuario.deleteById(id);
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public Iterable<UsuarioVo> encontrarPorNombre(String nombre) {
+		return repoUsuario.findByNombre(nombre);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Iterable<UsuarioVo> encontrarPorCargo(String cargo) {
+		return repoUsuario.findByCargo(cargo);
+	}
+
 }

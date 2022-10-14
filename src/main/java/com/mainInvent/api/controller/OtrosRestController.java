@@ -29,6 +29,14 @@ public class OtrosRestController {
 	
 	@PostMapping("/otros")
 	public ResponseEntity<?> saveOtros(@RequestBody OtrosVo otros){
+		
+		Optional<OtrosVo> otro = otrosService.findByID(otros.getId_parte_otros());
+		
+		if (otro.isPresent()) {
+			String msj = "El item de categoria Otro ya esta registrado con este id";
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msj);
+		}
+		
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(otrosService.save(otros));
 	}
 	
@@ -39,7 +47,8 @@ public class OtrosRestController {
 		Optional<OtrosVo> oOtros = otrosService.findByID(otros_id);
 		
 		if (!oOtros.isPresent()){
-			return ResponseEntity.notFound().build();
+			String msj = "El item de categoria Otro con id "+ otros_id +" no esta registrado";
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msj);
 		}
 		
 		return ResponseEntity.ok(oOtros);
@@ -51,7 +60,8 @@ public class OtrosRestController {
 		Optional<OtrosVo> otrosOpti = otrosService.findByID(otros_id);
 		
 		if (!otrosOpti.isPresent()) {
-			return ResponseEntity.notFound().build();
+			String msj = "El item de categoria Otro con id "+ otros_id +" no esta registrado";
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msj);
 		}
 		
 		otrosOpti.get().setNombre_parte_otros(otros.getNombre_parte_otros());
@@ -69,12 +79,26 @@ public class OtrosRestController {
 	
 	@DeleteMapping("/otros/delete/{id}")
 	public ResponseEntity<?> deleteOtros(@PathVariable(value = "id") Long id){
+		
 		if (!otrosService.findByID(id).isPresent()) {
-			ResponseEntity.notFound().build();
+			String msj = "El item de categoria Otro con id " + id +" que desea eliminar no ha sido encontrado";
+			
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msj);
 		}
 		
 		otrosService.deleteById(id);
-		return ResponseEntity.ok().build();
+		
+		Optional<OtrosVo> item = otrosService.findByID(id);
+		
+		if (item.isPresent()) {
+			
+			String msj = "El item no se ha podido eliminar";
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msj);
+			
+		}else {
+			String msj = "Item de categoria Otro eliminado con exito";
+			return ResponseEntity.status(HttpStatus.ACCEPTED).body(msj);
+		}
 	}
 	
 	@GetMapping("/otros")
@@ -86,8 +110,12 @@ public class OtrosRestController {
 	}
 	
 	@GetMapping("/otros/name/{name}")
-	public ResponseEntity<?> getByName(@PathVariable String name){
-		return ResponseEntity.ok(otrosService.encontrarPornombre(name));
+	public List<OtrosVo> getByName(@PathVariable String name){
+		
+		List<OtrosVo> usuariosList = StreamSupport
+				.stream(otrosService.encontrarPornombre(name).spliterator(), false).collect(Collectors.toList());
+		
+		return usuariosList;
 	}
 	
 	@GetMapping("/otros/type/{tipo}")

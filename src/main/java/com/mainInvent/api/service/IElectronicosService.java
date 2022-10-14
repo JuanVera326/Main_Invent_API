@@ -16,14 +16,14 @@ public interface IElectronicosService {
 	
 	public Optional<ElectronicosVo> findByID(Long id);
 	
-	public Iterable<ElectronicosVo> findByName(String nombre);
+	public Iterable<ElectronicosVo> encontrarPorNombre(String nombre);
 	
-	public Iterable<ElectronicosVo> findByNameOfFactoryPart(String numParteFabricante);
+	public Iterable<ElectronicosVo> encontrarPorNumParteFabricante(String numParteFabricante);
 	
-	public Iterable<ElectronicosVo> findByType(String tipo);
+	public Iterable<ElectronicosVo> encontrarPorTipo(String tipo);
 	
 	
-	public ElectronicosVo save(ElectronicosVo usuario);
+	public ElectronicosVo save(ElectronicosVo itemelectronico);
 	
 	public void deleteById(Long id);
 }

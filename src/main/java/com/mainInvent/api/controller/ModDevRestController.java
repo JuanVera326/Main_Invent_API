@@ -29,18 +29,28 @@ public class ModDevRestController {
 	
 	@PostMapping("/moddev")
 	public ResponseEntity<?> saveModdev(@RequestBody ModDevVo moddev){
+		
+		Optional<ModDevVo> mod = modDevService.findByID(moddev.getId_parte_moddev());
+		
+		if (mod.isPresent()) {
+			String msj = "El item de categoria Modulo de Desarrollo ya esta registrado con este id";
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msj);
+		}
+		
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(modDevService.save(moddev));
 	}
 	
 	@GetMapping("/moddev/{id}")
 	public ResponseEntity<?> getModdev(@PathVariable(value = "id") Long moddev_id){
 		
-		Optional<ModDevVo> oModdev = modDevService.findByID(moddev_id);
+		Optional<ModDevVo> modO = modDevService.findByID(moddev_id);
 		
-		if (!oModdev.isPresent()){
-			return ResponseEntity.notFound().build();
+		if (!modO.isPresent()){
+			String msj = "El item de categoria Modulo de Desarrollo con id "+ moddev_id +" no esta registrado";
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msj);
 		}
-		return ResponseEntity.ok(oModdev);
+		
+		return ResponseEntity.ok(modO);
 	} 
 	
 	@PutMapping("/moddev/{id}")
@@ -48,9 +58,10 @@ public class ModDevRestController {
 		
 		Optional<ModDevVo> moddevOpti = modDevService.findByID(moddev_id);
 		
-		if(!moddevOpti.isPresent()){
-			return ResponseEntity.notFound().build();
-        }
+		if (!moddevOpti.isPresent()) {
+			String msj = "El item de categoria Modulo de Desarrollo con id "+ moddev_id +" no esta registrado";
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msj);
+		}
 		
 		moddevOpti.get().setNombre_partemoddev(moddev.getNombre_partemoddev());
 		moddevOpti.get().setImagen_partemoddev(moddev.getImagen_partemoddev());
@@ -65,13 +76,28 @@ public class ModDevRestController {
 		
 	}
 	
-	@DeleteMapping("/moddev/{id}")
+	@DeleteMapping("/moddev/delete/{id}")
 	public ResponseEntity<?> deleteModdev(@PathVariable(value = "id") Long id){
+		
 		if (!modDevService.findByID(id).isPresent()) {
-			ResponseEntity.notFound().build();
+			String msj = "El item de categoria Modulo de Desarrollo con id " + id +" que desea eliminar no ha sido encontrado";
+			
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msj);
 		}
+		
 		modDevService.deleteById(id);
-		return ResponseEntity.ok().build();
+		
+		Optional<ModDevVo> item = modDevService.findByID(id);
+		
+		if (item.isPresent()) {
+			
+			String msj = "El item no se ha podido eliminar";
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msj);
+			
+		}else {
+			String msj = "Item de categoria Otro eliminado con exito";
+			return ResponseEntity.status(HttpStatus.ACCEPTED).body(msj);
+		}
 	}
 	
 	@GetMapping("/moddev")
@@ -83,8 +109,12 @@ public class ModDevRestController {
 	}
 	
 	@GetMapping("/moddev/name/{name}")
-	public ResponseEntity<?> getByName(@PathVariable String name){
-	  return ResponseEntity.ok(modDevService.encontrarPorNombre(name));
+	public List<ModDevVo> getByName(@PathVariable String name){
+		
+		List<ModDevVo> usuariosList = StreamSupport
+				.stream(modDevService.encontrarPorNombre(name).spliterator(), false).collect(Collectors.toList());
+		
+		return usuariosList;
 	}
 	
 	@GetMapping("/moddev/type/{tipo}")

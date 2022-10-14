@@ -39,7 +39,7 @@ public class ElementosFerreteriaServiceImpl implements IElementosFerreteriaServi
 
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<ElementosFerrerteriaVo> encontrarPorNombre(String nombre) {
+	public Iterable<ElementosFerrerteriaVo> encontrarPorNombre(String nombre) {
 		return eleFerreRepo.findByNombre_parte_elementosferreteria(nombre);
 	}
 

@@ -16,12 +16,12 @@ public interface IModDevService {
 	
 	public Optional<ModDevVo> findByID(Long id);
 	
-	public Optional<ModDevVo> encontrarPorNombre(String nombre);
+	public Iterable<ModDevVo> encontrarPorNombre(String nombre);
 	
 	public Iterable<ModDevVo> encontrarPorTipo(String tipo);
 	
 	
-	public ModDevVo save(ModDevVo usuario);
+	public ModDevVo save(ModDevVo itemmoddev);
 	
 	public void deleteById(Long id);
 }

@@ -15,9 +15,12 @@ public interface IUsuarioService {
 	
 	public Optional<UsuarioVo> findByID(Long id);
 	
+	public Iterable<UsuarioVo> encontrarPorNombre(String nombre);
 	
+	public Iterable<UsuarioVo> encontrarPorCargo(String cargo);
+	
+ 	
 	public UsuarioVo save(UsuarioVo usuario);
-	
 	
 	public void deleteById(Long id);
 }
