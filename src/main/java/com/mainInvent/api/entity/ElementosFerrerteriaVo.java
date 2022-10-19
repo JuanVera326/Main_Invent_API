@@ -4,8 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "elementosferreteria_items")
@@ -14,13 +17,16 @@ public class ElementosFerrerteriaVo implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "id_elementosferreteria_item", nullable = false)
+	@Column(name = "id_elementosferreteria_item")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id_parte_elementosferreteria;
 	
 	@Column(name = "nombre_elementosferreteria_item", nullable = false , length = 80)
 	private String nombre_parte_elementosferreteria;
 	
-	@Column(name = "imagen_elementosferreteria_items", nullable = false , length = 800)
+	//@Lob
+	//@Type(type = "org.hibernate.type.ImageType")
+	@Column(name = "imagen_elementosferreteria_items", nullable = false)
 	private String imagen_parte_elementosferreteria;
 	
 	@Column(name = "descripcion_elementosferreteria_items", nullable = false , length = 250)
@@ -38,7 +44,9 @@ public class ElementosFerrerteriaVo implements Serializable{
 	@Column(name = "ubicacion_elementosferreteria_items", nullable = false , length = 250)
 	private String ubicacion_parte_elementosferreteria;
 	
-	@Column(name = "datasheet_elementosferreteria_items", nullable = false , length = 800)
+	//@Lob
+	//@Type(type = "org.hibernate.type.ImageType"), columnDefinition = "LONGBLOB"
+	@Column(name = "datasheet_elementosferreteria_items")
 	private String datasheet_parte_elementosferreteria;
 	
 	public ElementosFerrerteriaVo() {

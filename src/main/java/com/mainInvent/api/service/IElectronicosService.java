@@ -16,7 +16,9 @@ public interface IElectronicosService {
 	
 	public Optional<ElectronicosVo> findByID(Long id);
 	
-	public Iterable<ElectronicosVo> encontrarPorNombre(String nombre);
+	public Optional<ElectronicosVo> encontrarPorNombre(String nombre);
+	
+	public Iterable<ElectronicosVo> encontrarPorNombreGeneral(String nombre);
 	
 	public Iterable<ElectronicosVo> encontrarPorNumParteFabricante(String numParteFabricante);
 	

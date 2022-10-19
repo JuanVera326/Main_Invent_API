@@ -37,10 +37,10 @@ public class OtrosRestController {
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msj);
 		}
 		
-		Optional<OtrosVo> otro = otrosService.findByID(otros.getId_parte_otros());
+		Optional<OtrosVo> otro = otrosService.encontrarPornombre(otros.getNombre_parte_otros());
 		
 		if (otro.isPresent()) {
-			String msj = "El item de categoria Otro ya esta registrado con este id";
+			String msj = "El item de categoria Otro ya esta registrado con este Nombre";
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msj);
 		}
 		
@@ -127,18 +127,21 @@ public class OtrosRestController {
 	}
 	
 	@GetMapping("/otros/name/{name}")
-	public List<OtrosVo> getByName(@PathVariable String name){
-		
-		List<OtrosVo> usuariosList = StreamSupport
-				.stream(otrosService.encontrarPornombre(name).spliterator(), false).collect(Collectors.toList());
-		
-		return usuariosList;
+	public ResponseEntity<?> getByName(@PathVariable String name){
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(otrosService.encontrarPornombre(name));
 	}
 	
 	@GetMapping("/otros/type/{tipo}")
 	public List<OtrosVo> getByType(@PathVariable String tipo){
 		List<OtrosVo> otrosList = StreamSupport
 				.stream(otrosService.encontrarPorTipo(tipo).spliterator(), false).collect(Collectors.toList());
+		return otrosList;
+	}
+	
+	@GetMapping("/otros/general/name/{name}")
+	public List<OtrosVo> getByNameGeneral(@PathVariable String name){
+		List<OtrosVo> otrosList = StreamSupport
+				.stream(otrosService.encontrarPorNombreGeneral(name).spliterator(), false).collect(Collectors.toList());
 		return otrosList;
 	}
 }

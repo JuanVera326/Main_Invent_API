@@ -4,8 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "otros_items")
@@ -14,13 +17,16 @@ public class OtrosVo implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "id_otro_items", nullable = false)
+	@Column(name = "id_otro_items")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id_parte_otros;
 	
 	@Column(name = "nombre_otro_item", nullable = false , length = 80)
 	private String nombre_parte_otros;
 	
-	@Column(name = "imagen_otro_items", nullable = false , length = 800)
+	//@Lob
+	//@Type(type = "org.hibernate.type.ImageType"), columnDefinition = "LONGBLOB"
+	@Column(name = "imagen_otro_items", nullable = false)
 	private String imagen_parte_otros;
 	
 	@Column(name = "descripcion_otro_items", nullable = false , length = 250)
@@ -38,7 +44,9 @@ public class OtrosVo implements Serializable{
 	@Column(name = "ubicacion_otro_items", nullable = false , length = 250)
 	private String ubicacion_parte_otros;
 	
-	@Column(name = "datasheet_otro_items", nullable = false , length = 800)
+	//@Lob
+	//@Type(type = "org.hibernate.type.ImageType"), columnDefinition = "LONGBLOB"
+	@Column(name = "datasheet_otro_items")
 	private String datasheet_parte_otros;
 	
 	public OtrosVo() {

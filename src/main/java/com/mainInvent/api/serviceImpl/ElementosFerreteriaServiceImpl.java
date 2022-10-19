@@ -39,24 +39,32 @@ public class ElementosFerreteriaServiceImpl implements IElementosFerreteriaServi
 
 	@Override
 	@Transactional(readOnly = true)
-	public Iterable<ElementosFerrerteriaVo> encontrarPorNombre(String nombre) {
-		return eleFerreRepo.findByNombre_parte_elementosferreteria(nombre);
-	}
-
-	@Override
-	@Transactional(readOnly = true)
 	public Iterable<ElementosFerrerteriaVo> encontrarPorTipo(String tipo) {
 		return eleFerreRepo.findByTipo_parte_elementosferreteria(tipo);
 	}
 
 	@Override
+	@Transactional
 	public ElementosFerrerteriaVo save(ElementosFerrerteriaVo eleF_item) {
 		return eleFerreRepo.save(eleF_item);
 	}
 
 	@Override
+	@Transactional
 	public void deleteById(Long id) {
 		eleFerreRepo.deleteById(id);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Optional<ElementosFerrerteriaVo> encontrarPorNombreItem(String nombre) {
+		return eleFerreRepo.findByNombre(nombre);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Iterable<ElementosFerrerteriaVo> encontrarPorNombreGeneral(String name) {
+		return eleFerreRepo.findByNombre_elementosferreteria_item_general(name);
 	}
 
 }

@@ -37,10 +37,10 @@ public class ElementosFerreteriaRestController {
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msj);
 		}
 		
-		Optional<ElementosFerrerteriaVo> otro = eleFerreService.findByID(eleferre.getId_parte_elementosferreteria());
+		Optional<ElementosFerrerteriaVo> otro = eleFerreService.encontrarPorNombreItem(eleferre.getNombre_parte_elementosferreteria());
 		
 		if (otro.isPresent()) {
-			String msj = "El item de categoria Elementos Ferrerteria ya esta registrado con este id";
+			String msj = "El item de categoria Elementos Ferrerteria ya esta registrado con este Nombre";
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msj);
 		}
 		
@@ -126,18 +126,21 @@ public class ElementosFerreteriaRestController {
 	}
 	
 	@GetMapping("/eleferre/name/{name}")
-	public List<ElementosFerrerteriaVo> getByName(@PathVariable String name){
-		
-		List<ElementosFerrerteriaVo> usuariosList = StreamSupport
-				.stream(eleFerreService.encontrarPorNombre(name).spliterator(), false).collect(Collectors.toList());
-		
-		return usuariosList;
+	public ResponseEntity<?> getByName(@PathVariable String name){
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(eleFerreService.encontrarPorNombreItem(name));
 	}
 	
 	@GetMapping("/eleferre/type/{tipo}")
 	public List<ElementosFerrerteriaVo> getByType(@PathVariable String tipo){
 		List<ElementosFerrerteriaVo> eleferreList = StreamSupport
 				.stream(eleFerreService.encontrarPorTipo(tipo).spliterator(), false).collect(Collectors.toList());
+		return eleferreList;
+	}
+	
+	@GetMapping("/eleferre/general/name/{name}")
+	public List<ElementosFerrerteriaVo> getByNameGeneral(@PathVariable String name){
+		List<ElementosFerrerteriaVo> eleferreList = StreamSupport
+				.stream(eleFerreService.encontrarPorNombreGeneral(name).spliterator(), false).collect(Collectors.toList());
 		return eleferreList;
 	}
 }

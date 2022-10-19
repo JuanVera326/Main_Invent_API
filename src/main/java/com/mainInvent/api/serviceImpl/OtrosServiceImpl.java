@@ -50,7 +50,7 @@ public class OtrosServiceImpl implements IOtrosService{
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Iterable<OtrosVo> encontrarPornombre(String nombre) {
+	public Optional<OtrosVo> encontrarPornombre(String nombre) {
 		return repoOtros.findByNombre_parte_otros(nombre);
 	}
 
@@ -58,6 +58,12 @@ public class OtrosServiceImpl implements IOtrosService{
 	@Transactional(readOnly = true)
 	public Iterable<OtrosVo> encontrarPorTipo(String tipo) {
 		return repoOtros.findByTipo_parte_otros(tipo);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Iterable<OtrosVo> encontrarPorNombreGeneral(String nombre) {
+		return repoOtros.findByNombre_otros_item(nombre);
 	}
 
 }

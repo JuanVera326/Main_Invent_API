@@ -16,9 +16,11 @@ public interface IModDevService {
 	
 	public Optional<ModDevVo> findByID(Long id);
 	
-	public Iterable<ModDevVo> encontrarPorNombre(String nombre);
+	public Optional<ModDevVo> encontrarPorNombre(String nombre);
 	
 	public Iterable<ModDevVo> encontrarPorTipo(String tipo);
+	
+	public Iterable<ModDevVo> encontarPorNombreGeneral(String name);
 	
 	
 	public ModDevVo save(ModDevVo itemmoddev);

@@ -38,8 +38,8 @@ public class ElectronicosServiceImpl implements IElectronicosService{
 
 	@Override
 	@Transactional(readOnly = true)
-	public Iterable<ElectronicosVo> encontrarPorNombre(String nombre) {
-		return electronicorepo.findByNombre_electronicos_item(nombre);
+	public Optional<ElectronicosVo> encontrarPorNombre(String nombre) {
+		return electronicorepo.findByName(nombre);
 	}
 
 	@Override
@@ -55,15 +55,21 @@ public class ElectronicosServiceImpl implements IElectronicosService{
 	}
 
 	@Override
+	@Transactional
 	public void deleteById(Long id) {
 		electronicorepo.deleteById(id);
 	}
 
 	@Override
+	@Transactional
 	public ElectronicosVo save(ElectronicosVo itemelectronico) {
 		return electronicorepo.save(itemelectronico);
 	}
 
-
+	@Override
+	@Transactional(readOnly = true)
+	public Iterable<ElectronicosVo> encontrarPorNombreGeneral(String nombre) {
+		return electronicorepo.findByNombre_electronicos_item(nombre);
+	}
 	
 }

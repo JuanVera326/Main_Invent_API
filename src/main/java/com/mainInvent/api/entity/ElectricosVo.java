@@ -4,8 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name = "electricos_items")
@@ -14,10 +18,13 @@ public class ElectricosVo implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "id_electronicos_items", nullable = false)
+	@Column(name = "id_electronicos_items")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_parte_electricos;
 	
-	@Column(name = "imagen_electricos_item", nullable = false , length = 800)
+	//@Lob
+	//@Type(type = "org.hibernate.type.ImageType"), columnDefinition = "LONGBLOB"
+	@Column(name = "imagen_electricos_item", nullable = false)
 	private String imagen_parte_electricos;
 	
 	@Column(name = "nombre_electricos_item", nullable = false , length = 800)
@@ -32,13 +39,15 @@ public class ElectricosVo implements Serializable{
 	@Column(name = "cantidadDisp_electricos_item", nullable = false , length = 800)
 	private int cantidad_disponible_electricos;
 	
-	@Column(name = "cantidadCons_electricos_item", nullable = false , length = 800)
+	@Column(name = "cantidadCons_electricos_item", nullable = false , length = 10)
 	private int cantidad_consumida_electricos;
 	
 	@Column(name = "ubicacion_electricos_item", nullable = false , length = 250)
 	private String ubicacion_parte_electricos;
 	
-	@Column(name = "datasheet_electricos_item", nullable = false , length = 800)
+	//@Lob
+	//@Type(type = "org.hibernate.type.ImageType"), columnDefinition = "LONGBLOB"
+	@Column(name = "datasheet_electricos_item")
 	private String datasheet_parte_electricos;
 	
 	public ElectricosVo() {

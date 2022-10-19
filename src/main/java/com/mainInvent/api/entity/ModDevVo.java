@@ -4,20 +4,26 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name = "modeDev_items")
+@Table(name = "moddev_items")
 public class ModDevVo implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "id_moddev_item", nullable = false )
+	@Column(name = "id_moddev_item")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id_parte_moddev;
 	
-	@Column(name = "imagen_moddev_item", nullable = false , length = 800)
+	//@Lob
+	//@Type(type = "org.hibernate.type.ImageType"), columnDefinition = "LONGBLOB"
+	@Column(name = "imagen_moddev_item", nullable = false)
 	private String imagen_partemoddev;
 	
 	@Column(name = "nombre_moddev_item", nullable = false , length = 80)
@@ -38,7 +44,9 @@ public class ModDevVo implements Serializable{
 	@Column(name = "ubicacion_moddev_item", nullable = false , length = 250)
 	private String ubicacion_parte_moddev;
 	
-	@Column(name = "datasheet_moddev_item", nullable = false , length = 800)
+	//@Lob
+	//@Type(type = "org.hibernate.type.ImageType"), columnDefinition = "LONGBLOB"
+	@Column(name = "datasheet_moddev_item")
 	private String datasheet_parte_moddev;
 	
 	public ModDevVo() {

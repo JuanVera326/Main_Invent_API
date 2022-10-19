@@ -37,10 +37,11 @@ public class ElectricosRestController {
 			String msj = "No Autorizado";
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msj);
 		}
-		Optional<ElectricosVo> electrico = electricosService.findByID(electricos.getId_parte_electricos());
 		
-		if (electrico.isPresent()) {
-			String msj = "El item de categoria Electricos ya esta registrado con este id";
+		Optional<ElectricosVo> opElectric = electricosService.encontrarPorNombreItem(electricos.getNombre_parte_electricos());
+				
+		if (opElectric.isPresent()) {
+			String msj = "El item de categoria Electricos ya esta registrado con este Nombre";
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msj);
 		}
 		
@@ -121,18 +122,21 @@ public class ElectricosRestController {
 	}
 	
 	@GetMapping("/electricos/name/{name}")
-	public List<ElectricosVo> getByName(@PathVariable String name){
-		
-		List<ElectricosVo> usuariosList = StreamSupport
-				.stream(electricosService.encontrarPorNombre(name).spliterator(), false).collect(Collectors.toList());
-		
-		return usuariosList;
+	public ResponseEntity<?> getByName(@PathVariable String name){
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(electricosService.encontrarPorNombreItem(name));
 	}
 	
 	@GetMapping("/electricos/type/{tipo}")
 	public List<ElectricosVo> getByType(@PathVariable String tipo){
 		List<ElectricosVo> electricosList = StreamSupport
 				.stream(electricosService.encontrarPorTipo(tipo).spliterator(), false).collect(Collectors.toList());
+		return electricosList;
+	}
+	
+	@GetMapping("/electricos/general/name/{name}")
+	public List<ElectricosVo> getByNameGeneral(@PathVariable String name){
+		List<ElectricosVo> electricosList = StreamSupport
+				.stream(electricosService.encontrarPorNombreGeneral(name).spliterator(), false).collect(Collectors.toList());
 		return electricosList;
 	}
 }

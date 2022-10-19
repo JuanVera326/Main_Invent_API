@@ -4,8 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "electronicos_items")
@@ -14,7 +17,8 @@ public class ElectronicosVo implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "id_electronicos_items", nullable = false)
+	@Column(name = "id_electronicos_items")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id_Comp;
 	
 	@Column(name = "nombre_electronicos_item", nullable = false , length = 80)
@@ -23,10 +27,14 @@ public class ElectronicosVo implements Serializable{
 	@Column(name = "numeropartefabricante_electronicos_items", nullable = false)
 	private String numero_partefabricante_comp;
 	
-	@Column(name = "pinout_electronicos_items", nullable = false , length = 800)
+	//@Lob
+	//@Type(type = "org.hibernate.type.ImageType"), columnDefinition = "LONGBLOB"
+	@Column(name = "pinout_electronicos_items", nullable = false)
 	private String pinout_comp;
 	
-	@Column(name = "esquematico_electronicos_items", nullable = false , length = 800)
+	//@Lob
+	//@Type(type = "org.hibernate.type.ImageType")
+	@Column(name = "esquematico_electronicos_items", nullable = false)
 	private String esquematico_comp;
 	
 	@Column(name = "descripcion_electronicos_items", nullable = false , length = 250)
@@ -47,7 +55,9 @@ public class ElectronicosVo implements Serializable{
 	@Column(name = "ubicacion_electronicos_items", nullable = false , length = 250)
 	private String ubicacion_comp;
 	
-	@Column(name = "datasheet_electronicos_items", nullable = false , length = 800)
+	//@Lob
+	//@Type(type = "org.hibernate.type.ImageType"), columnDefinition = "LONGBLOB"
+	@Column(name = "datasheet_electronicos_items")
 	private String datasheet_comp;
 	
 	public ElectronicosVo() {

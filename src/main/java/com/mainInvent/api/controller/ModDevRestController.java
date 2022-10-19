@@ -37,10 +37,10 @@ public class ModDevRestController {
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msj);
 		}
 		
-		Optional<ModDevVo> mod = modDevService.findByID(moddev.getId_parte_moddev());
+		Optional<ModDevVo> mod = modDevService.encontrarPorNombre(moddev.getNombre_partemoddev());
 		
 		if (mod.isPresent()) {
-			String msj = "El item de categoria Modulo de Desarrollo ya esta registrado con este id";
+			String msj = "El item de categoria Modulo de Desarrollo ya esta registrado con este Nombre";
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msj);
 		}
 		
@@ -126,18 +126,21 @@ public class ModDevRestController {
 	}
 	
 	@GetMapping("/moddev/name/{name}")
-	public List<ModDevVo> getByName(@PathVariable String name){
-		
-		List<ModDevVo> usuariosList = StreamSupport
-				.stream(modDevService.encontrarPorNombre(name).spliterator(), false).collect(Collectors.toList());
-		
-		return usuariosList;
+	public ResponseEntity<?> getByName(@PathVariable String name){
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(modDevService.encontrarPorNombre(name));
 	}
 	
 	@GetMapping("/moddev/type/{tipo}")
 	public List<ModDevVo> getByType(@PathVariable String tipo){
 		List<ModDevVo> moddevList = StreamSupport
 				.stream(modDevService.encontrarPorTipo(tipo).spliterator(), false).collect(Collectors.toList());
+		return moddevList;
+	}
+	
+	@GetMapping("/moddev/general/name/{name}")
+	public List<ModDevVo> getByNameGeneral(@PathVariable String name){
+		List<ModDevVo> moddevList = StreamSupport
+				.stream(modDevService.encontarPorNombreGeneral(name).spliterator(), false).collect(Collectors.toList());
 		return moddevList;
 	}
 }

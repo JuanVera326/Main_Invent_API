@@ -37,7 +37,14 @@ public class ElectronicosRestController {
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msj);
 		}
 	  
-	  Optional<ElectronicosVo> electronicoOp = electronicosService.findByID(electronicos.getId_Comp());
+		Optional<ElectronicosVo> opElectronico = electronicosService.encontrarPorNombre(electronicos.getNombre_comp());
+		
+		if (opElectronico.isPresent()) {
+			String msj = "El item de categoria Electronicos ya esta registrado con este Nombre";
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msj);
+		}
+	  
+	  Optional<ElectronicosVo> electronicoOp = electronicosService.encontrarPorNombre(electronicos.getNombre_comp());
 		
 		if (electronicoOp.isPresent()) {
 			String msj = "El item de categoria Electronicos  ya esta registrado con este id";
@@ -128,12 +135,8 @@ public class ElectronicosRestController {
   }
   
   @GetMapping("/electronicos/name/{name}")
-  public List<ElectronicosVo> getByName(@PathVariable String name){
-	  
-	  List<ElectronicosVo> usuariosList = StreamSupport
-				.stream(electronicosService.encontrarPorNombre(name).spliterator(), false).collect(Collectors.toList());
-		
-		return usuariosList;
+  public ResponseEntity<?> getByName(@PathVariable String name){
+	  return ResponseEntity.status(HttpStatus.ACCEPTED).body(electronicosService.encontrarPorNombre(name));
   }
   
   @GetMapping("/electronicos/type/{tipo}")
@@ -144,9 +147,16 @@ public class ElectronicosRestController {
   }
   
   @GetMapping("/electronicos/numfactory/{numeroFabricante}")
-	public List<ElectronicosVo> getByNumerParteFabricante(@PathVariable(value = "numeroFabricante") String tipo){
+  public List<ElectronicosVo> getByNumerParteFabricante(@PathVariable(value = "numeroFabricante") String tipo){
 		List<ElectronicosVo> electronicosList = StreamSupport
 				.stream(electronicosService.encontrarPorNumParteFabricante(tipo).spliterator(), false).collect(Collectors.toList());
+		return electronicosList;
+  }
+  
+  @GetMapping("/electronicos/general/name/{name}")
+  public List<ElectronicosVo> getByNameGeneral(@PathVariable String name){
+	  List<ElectronicosVo> electronicosList = StreamSupport
+				.stream(electronicosService.encontrarPorNombreGeneral(name).spliterator(), false).collect(Collectors.toList());
 		return electronicosList;
   }
 }

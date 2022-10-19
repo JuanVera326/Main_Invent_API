@@ -16,9 +16,11 @@ public interface IElectricosService {
 	
 	public Optional<ElectricosVo> findByID(Long id);
 	
-	public Iterable<ElectricosVo> encontrarPorNombre(String nombre);
+	public Optional<ElectricosVo> encontrarPorNombreItem(String nombre);
 	
 	public Iterable<ElectricosVo> encontrarPorTipo(String tipo);
+	
+	public Iterable<ElectricosVo> encontrarPorNombreGeneral(String nombre);
 	
 	
 	public ElectricosVo save(ElectricosVo itemelectricos);

@@ -37,18 +37,20 @@ public class ModDevServiceImpl implements IModDevService{
 	}
 
 	@Override
+	@Transactional
 	public ModDevVo save(ModDevVo moddev_item) {
 		return modDevRepo.save(moddev_item);
 	}
 
 	@Override
+	@Transactional
 	public void deleteById(Long id) {
 	   modDevRepo.deleteById(id);	
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Iterable<ModDevVo> encontrarPorNombre(String nombre) {
+	public Optional<ModDevVo> encontrarPorNombre(String nombre) {
 		return modDevRepo.findByNombre_partemoddev(nombre);
 	}
 
@@ -56,6 +58,12 @@ public class ModDevServiceImpl implements IModDevService{
 	@Transactional(readOnly = true)
 	public Iterable<ModDevVo> encontrarPorTipo(String tipo) {
 		return modDevRepo.findByTipo_parte_moddev(tipo);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Iterable<ModDevVo> encontarPorNombreGeneral(String name) {
+		return modDevRepo.findByNombre_moddev_item(name);
 	}
 
 }
