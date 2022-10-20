@@ -24,9 +24,7 @@ public class OtrosVo implements Serializable{
 	@Column(name = "nombre_otro_item", nullable = false , length = 80)
 	private String nombre_parte_otros;
 	
-	//@Lob
-	//@Type(type = "org.hibernate.type.ImageType"), columnDefinition = "LONGBLOB"
-	@Column(name = "imagen_otro_items", nullable = false)
+	@Column(name = "imagen_otro_items", nullable = false , length = 800)
 	private String imagen_parte_otros;
 	
 	@Column(name = "descripcion_otro_items", nullable = false , length = 250)
@@ -44,9 +42,7 @@ public class OtrosVo implements Serializable{
 	@Column(name = "ubicacion_otro_items", nullable = false , length = 250)
 	private String ubicacion_parte_otros;
 	
-	//@Lob
-	//@Type(type = "org.hibernate.type.ImageType"), columnDefinition = "LONGBLOB"
-	@Column(name = "datasheet_otro_items")
+	@Column(name = "datasheet_otro_items" , nullable = false , length = 800)
 	private String datasheet_parte_otros;
 	
 	public OtrosVo() {

@@ -21,9 +21,7 @@ public class ModDevVo implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id_parte_moddev;
 	
-	//@Lob
-	//@Type(type = "org.hibernate.type.ImageType"), columnDefinition = "LONGBLOB"
-	@Column(name = "imagen_moddev_item", nullable = false)
+	@Column(name = "imagen_moddev_item", nullable = false , length = 800)
 	private String imagen_partemoddev;
 	
 	@Column(name = "nombre_moddev_item", nullable = false , length = 80)
@@ -44,9 +42,7 @@ public class ModDevVo implements Serializable{
 	@Column(name = "ubicacion_moddev_item", nullable = false , length = 250)
 	private String ubicacion_parte_moddev;
 	
-	//@Lob
-	//@Type(type = "org.hibernate.type.ImageType"), columnDefinition = "LONGBLOB"
-	@Column(name = "datasheet_moddev_item")
+	@Column(name = "datasheet_moddev_item" , length = 800)
 	private String datasheet_parte_moddev;
 	
 	public ModDevVo() {

@@ -5,10 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "usuarios")
@@ -29,10 +26,8 @@ public class UsuarioVo implements Serializable{
 	@Column(name = "cargo_usuario", nullable = false , length = 45)
 	private String cargo;
 	
-	@Lob
-	@Type(type = "org.hibernate.type.ImageType")
-	@Column(name = "imagen_usuario", nullable = false, columnDefinition = "LONGBLOB")
-	private byte[] imagen;
+	@Column(name = "imagen_usuario", nullable = false , length = 800)
+	private String imagen;
 	
 	@Column(name = "edad_usuario", nullable = false , length = 2)
 	private String edad;
@@ -53,7 +48,7 @@ public class UsuarioVo implements Serializable{
 		
 	}
 	
-	public UsuarioVo(String nombre, String apellido, String cargo, byte[] imagen, String edad, int rol, Long id, String password, String correo, boolean estado){
+	public UsuarioVo(String nombre, String apellido, String cargo, String imagen, String edad, int rol, Long id, String password, String correo, boolean estado){
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -67,10 +62,10 @@ public class UsuarioVo implements Serializable{
 		this.estado = estado;
 	}
 	
-	public byte[] getImagen() {
+	public String getImagen() {
 		return imagen;
 	}
-	public void setImagen(byte[] imagen) {
+	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
 	public boolean getEstado() {

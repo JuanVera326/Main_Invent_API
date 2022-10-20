@@ -24,9 +24,7 @@ public class ElementosFerrerteriaVo implements Serializable{
 	@Column(name = "nombre_elementosferreteria_item", nullable = false , length = 80)
 	private String nombre_parte_elementosferreteria;
 	
-	//@Lob
-	//@Type(type = "org.hibernate.type.ImageType")
-	@Column(name = "imagen_elementosferreteria_items", nullable = false)
+	@Column(name = "imagen_elementosferreteria_items", nullable = false , length = 800)
 	private String imagen_parte_elementosferreteria;
 	
 	@Column(name = "descripcion_elementosferreteria_items", nullable = false , length = 250)
@@ -44,9 +42,7 @@ public class ElementosFerrerteriaVo implements Serializable{
 	@Column(name = "ubicacion_elementosferreteria_items", nullable = false , length = 250)
 	private String ubicacion_parte_elementosferreteria;
 	
-	//@Lob
-	//@Type(type = "org.hibernate.type.ImageType"), columnDefinition = "LONGBLOB"
-	@Column(name = "datasheet_elementosferreteria_items")
+	@Column(name = "datasheet_elementosferreteria_items" , length = 800)
 	private String datasheet_parte_elementosferreteria;
 	
 	public ElementosFerrerteriaVo() {

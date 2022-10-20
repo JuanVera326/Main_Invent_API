@@ -22,9 +22,7 @@ public class ElectricosVo implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_parte_electricos;
 	
-	//@Lob
-	//@Type(type = "org.hibernate.type.ImageType"), columnDefinition = "LONGBLOB"
-	@Column(name = "imagen_electricos_item", nullable = false)
+	@Column(name = "imagen_electricos_item", nullable = false , length = 800)
 	private String imagen_parte_electricos;
 	
 	@Column(name = "nombre_electricos_item", nullable = false , length = 800)
@@ -45,9 +43,7 @@ public class ElectricosVo implements Serializable{
 	@Column(name = "ubicacion_electricos_item", nullable = false , length = 250)
 	private String ubicacion_parte_electricos;
 	
-	//@Lob
-	//@Type(type = "org.hibernate.type.ImageType"), columnDefinition = "LONGBLOB"
-	@Column(name = "datasheet_electricos_item")
+	@Column(name = "datasheet_electricos_item" , length = 800)
 	private String datasheet_parte_electricos;
 	
 	public ElectricosVo() {

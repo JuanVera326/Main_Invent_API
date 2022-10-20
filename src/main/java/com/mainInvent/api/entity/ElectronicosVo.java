@@ -27,14 +27,10 @@ public class ElectronicosVo implements Serializable{
 	@Column(name = "numeropartefabricante_electronicos_items", nullable = false)
 	private String numero_partefabricante_comp;
 	
-	//@Lob
-	//@Type(type = "org.hibernate.type.ImageType"), columnDefinition = "LONGBLOB"
-	@Column(name = "pinout_electronicos_items", nullable = false)
+	@Column(name = "pinout_electronicos_items", nullable = false , length = 800)
 	private String pinout_comp;
 	
-	//@Lob
-	//@Type(type = "org.hibernate.type.ImageType")
-	@Column(name = "esquematico_electronicos_items", nullable = false)
+	@Column(name = "esquematico_electronicos_items", nullable = false , length = 800)
 	private String esquematico_comp;
 	
 	@Column(name = "descripcion_electronicos_items", nullable = false , length = 250)
@@ -55,9 +51,7 @@ public class ElectronicosVo implements Serializable{
 	@Column(name = "ubicacion_electronicos_items", nullable = false , length = 250)
 	private String ubicacion_comp;
 	
-	//@Lob
-	//@Type(type = "org.hibernate.type.ImageType"), columnDefinition = "LONGBLOB"
-	@Column(name = "datasheet_electronicos_items")
+	@Column(name = "datasheet_electronicos_items" , nullable = false , length = 800)
 	private String datasheet_comp;
 	
 	public ElectronicosVo() {
