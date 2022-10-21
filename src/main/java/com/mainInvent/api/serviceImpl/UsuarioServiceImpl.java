@@ -60,4 +60,10 @@ public class UsuarioServiceImpl implements IUsuarioService{
 		return repoUsuario.findByCargo(cargo);
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public Optional<UsuarioVo> encontrarPorCorreo(String correo) {
+		return repoUsuario.findByCorreo(correo);
+	}
+
 }

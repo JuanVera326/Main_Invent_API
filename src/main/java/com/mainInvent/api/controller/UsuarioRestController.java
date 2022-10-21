@@ -9,6 +9,7 @@ import java.util.stream.StreamSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,13 +24,14 @@ import com.mainInvent.api.service.IUsuarioService;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = {"*"})
 public class UsuarioRestController {
 	
 	
 	@Autowired
 	private IUsuarioService usuarioService;
 	
-	String acces_key = "aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1kUXc0dzlXZ1hjUQ==";
+	String acces_key = "bWF0aWFzLm1hL25zZnc=";
 	
 	@PostMapping("/usuarios/{keys}")
 	public ResponseEntity<?> saveNewUsuario(@RequestBody UsuarioVo usuario, @PathVariable String keys){

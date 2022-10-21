@@ -27,7 +27,7 @@ public class ElectronicosRestController {
   @Autowired
   private IElectronicosService electronicosService;
   
-  String acces_key = "aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1kUXc0dzlXZ1hjUQ==";
+  String acces_key = "bWF0aWFzLm1hL25zZnc=";
   
   @PostMapping("/electronicos/{keys}")
   public ResponseEntity<?> saveElectronicos(@RequestBody ElectronicosVo electronicos, @PathVariable String keys){

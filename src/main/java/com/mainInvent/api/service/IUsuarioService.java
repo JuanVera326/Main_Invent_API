@@ -15,6 +15,8 @@ public interface IUsuarioService {
 	
 	public Optional<UsuarioVo> findByID(Long id);
 	
+	public Optional<UsuarioVo> encontrarPorCorreo(String correo);
+	
 	public Iterable<UsuarioVo> encontrarPorNombre(String nombre);
 	
 	public Iterable<UsuarioVo> encontrarPorCargo(String cargo);

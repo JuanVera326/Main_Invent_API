@@ -1,6 +1,8 @@
 package com.mainInvent.api.repository;
 
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -15,4 +17,7 @@ public interface IUsuarioRepository extends JpaRepository<UsuarioVo, Long>{
 	
 	@Query(nativeQuery = false, value = " SELECT u FROM UsuarioVo u WHERE cargo = ?1")
 	public Iterable<UsuarioVo> findByCargo(String parte);
+	
+	@Query(nativeQuery = false, value = " SELECT u FROM UsuarioVo u WHERE correo = ?1")
+	public Optional<UsuarioVo> findByCorreo(String parte);
 }
