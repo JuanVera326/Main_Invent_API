@@ -1,5 +1,6 @@
 package com.mainInvent.api.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -146,4 +147,24 @@ public class OtrosRestController {
 				.stream(otrosService.encontrarPorNombreGeneral(name).spliterator(), false).collect(Collectors.toList());
 		return otrosList;
 	}
+    @GetMapping("/otros/tipos")
+    public List<String> getTypes(){
+    	
+	    List<String> otrosList = (List<String>) otrosService.obtenerTipos();
+	    
+	    String tipo = "";
+	    List<String> list = new ArrayList<String>();
+	    
+	    for (int i = 0; i < otrosList.size(); i++) {
+	    	
+	    	if (tipo.equals(otrosList.get(i))) {
+	    		tipo = otrosList.get(i);
+			}else {
+				list.add(otrosList.get(i));
+				tipo = otrosList.get(i);
+			}
+		}
+	    		
+	return list;
+    }
 }

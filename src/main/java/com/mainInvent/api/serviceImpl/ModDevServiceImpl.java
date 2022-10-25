@@ -66,4 +66,10 @@ public class ModDevServiceImpl implements IModDevService{
 		return modDevRepo.findByNombre_moddev_item(name);
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public Iterable<String> obtenerTipos() {
+		return modDevRepo.getTipos();
+	}
+
 }

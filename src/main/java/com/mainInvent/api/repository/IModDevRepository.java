@@ -19,4 +19,7 @@ public interface IModDevRepository extends JpaRepository<ModDevVo, Long>{
 	
 	@Query(nativeQuery = true, value = "SELECT * FROM moddev_items WHERE nombre_moddev_item LIKE %?1%")
 	public Iterable<ModDevVo> findByNombre_moddev_item(String nombre);
+	
+	@Query(nativeQuery = true, value = " SELECT tipo_moddev_item FROM moddev_items")
+	public Iterable<String> getTipos();
 }

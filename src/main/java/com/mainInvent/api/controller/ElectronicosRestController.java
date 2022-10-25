@@ -1,5 +1,6 @@
 package com.mainInvent.api.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -158,5 +159,26 @@ public class ElectronicosRestController {
 	  List<ElectronicosVo> electronicosList = StreamSupport
 				.stream(electronicosService.encontrarPorNombreGeneral(name).spliterator(), false).collect(Collectors.toList());
 		return electronicosList;
+  }
+
+  @GetMapping("/electronicos/tipos")
+  public List<String> getTypes(){
+  	
+	    List<String> electronicosList = (List<String>) electronicosService.obtenerTipos();
+	    
+	    String tipo = "";
+	    List<String> list = new ArrayList<String>();
+	    
+	    for (int i = 0; i < electronicosList.size(); i++) {
+	    	
+	    	if (tipo.equals(electronicosList.get(i))) {
+	    		tipo = electronicosList.get(i);
+			}else {
+				list.add(electronicosList.get(i));
+				tipo = electronicosList.get(i);
+			}
+		}
+	    		
+	return list;
   }
 }

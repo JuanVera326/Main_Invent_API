@@ -22,6 +22,8 @@ public interface IElectricosService {
 	
 	public Iterable<ElectricosVo> encontrarPorNombreGeneral(String nombre);
 	
+	public Iterable<String> obtenerTipos();
+	
 	
 	public ElectricosVo save(ElectricosVo itemelectricos);
 	

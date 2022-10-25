@@ -22,6 +22,8 @@ public interface IModDevService {
 	
 	public Iterable<ModDevVo> encontarPorNombreGeneral(String name);
 	
+	public Iterable<String> obtenerTipos();
+	
 	
 	public ModDevVo save(ModDevVo itemmoddev);
 	

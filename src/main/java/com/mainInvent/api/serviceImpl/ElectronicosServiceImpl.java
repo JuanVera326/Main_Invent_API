@@ -71,5 +71,11 @@ public class ElectronicosServiceImpl implements IElectronicosService{
 	public Iterable<ElectronicosVo> encontrarPorNombreGeneral(String nombre) {
 		return electronicorepo.findByNombre_electronicos_item(nombre);
 	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Iterable<String> obtenerTipos() {
+		return electronicorepo.getTipos();
+	}
 	
 }

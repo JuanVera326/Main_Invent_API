@@ -1,5 +1,6 @@
 package com.mainInvent.api.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -145,4 +146,26 @@ public class ElementosFerreteriaRestController {
 				.stream(eleFerreService.encontrarPorNombreGeneral(name).spliterator(), false).collect(Collectors.toList());
 		return eleferreList;
 	}
+
+    @GetMapping("/eleferre/tipos")
+    public List<String> getTypes(){
+    	
+	    List<String> eleferreList = (List<String>) eleFerreService.obtenerTipos();
+	    
+	    String tipo = "";
+	    List<String> list = new ArrayList<String>();
+	    
+	    for (int i = 0; i < eleferreList.size(); i++) {
+	    	
+	    	if (tipo.equals(eleferreList.get(i))) {
+	    		tipo = eleferreList.get(i);
+			}else {
+				list.add(eleferreList.get(i));
+				tipo = eleferreList.get(i);
+			}
+		}
+	    		
+	return list;
+    }
+    
 }

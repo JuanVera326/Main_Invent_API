@@ -66,4 +66,10 @@ public class OtrosServiceImpl implements IOtrosService{
 		return repoOtros.findByNombre_otros_item(nombre);
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public Iterable<String> obtenerTipos() {
+		return repoOtros.getTipos();
+	}
+
 }

@@ -20,5 +20,8 @@ public interface IElementosFerreteriaRepository extends JpaRepository<ElementosF
 	
 	@Query(nativeQuery = true, value = "SELECT * FROM elementosferreteria_items WHERE nombre_elementosferreteria_item LIKE %?1%")
 	public Iterable<ElementosFerrerteriaVo> findByNombre_elementosferreteria_item_general(String nombre);
+	
+	@Query(nativeQuery = true, value = " SELECT tipo_elementosferreteria_items FROM elementosferreteria_items")
+	public Iterable<String> getTipos();
 }
 

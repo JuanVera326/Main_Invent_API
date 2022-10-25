@@ -18,4 +18,7 @@ public interface IOtrosRepository extends JpaRepository<OtrosVo, Long>{
 	
 	@Query(nativeQuery = true, value = "SELECT * FROM otros_items WHERE nombre_otro_item LIKE %?1%")
 	public Iterable<OtrosVo> findByNombre_otros_item(String nombre);
+	
+	@Query(nativeQuery = true, value = " SELECT tipo_otro_items FROM otros_items")
+	public Iterable<String> getTipos();
 }

@@ -24,4 +24,6 @@ public interface IElectronicosRepository extends JpaRepository<ElectronicosVo, L
 	@Query(nativeQuery = true, value = "SELECT * FROM electronicos_items WHERE nombre_electronicos_item LIKE %?1%")
 	public Iterable<ElectronicosVo> findByNombre_electronicos_item(String nombre);
 	
+	@Query(nativeQuery = true, value = " SELECT tipo_electronicos_items FROM electronicos_items")
+	public Iterable<String> getTipos();
 } 

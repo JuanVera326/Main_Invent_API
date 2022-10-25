@@ -21,6 +21,8 @@ public interface IOtrosService {
 	
 	public Iterable<OtrosVo> encontrarPorNombreGeneral(String nombre);
 	
+	public Iterable<String> obtenerTipos();
+	
 	
 	public OtrosVo save(OtrosVo otro_item);
 	
