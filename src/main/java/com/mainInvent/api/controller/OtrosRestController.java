@@ -157,7 +157,7 @@ public class OtrosRestController {
 	    
 	    for (int i = 0; i < otrosList.size(); i++) {
 	    	
-	    	if (tipo.equals(otrosList.get(i))) {
+	    	if (tipo.equalsIgnoreCase(otrosList.get(i))) {
 	    		tipo = otrosList.get(i);
 			}else {
 				list.add(otrosList.get(i));

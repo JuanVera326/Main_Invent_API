@@ -89,6 +89,7 @@ public class UsuarioRestController {
 		usuarioOpti.get().setCargo(usuario.getCargo());
 		usuarioOpti.get().setCorreo(usuario.getCorreo());
 		usuarioOpti.get().setEdad(usuario.getEdad());
+		usuarioOpti.get().setImagen(usuario.getImagen());
 		usuarioOpti.get().setRol(usuario.getRol());
 		usuarioOpti.get().setEstado(usuario.getEstado());
 		usuarioOpti.get().setPassword(usuario.getPassword());

@@ -156,7 +156,7 @@ public class ModDevRestController {
 	    
 	    for (int i = 0; i < moddevList.size(); i++) {
 	    	
-	    	if (tipo.equals(moddevList.get(i))) {
+	    	if (tipo.equalsIgnoreCase(moddevList.get(i))) {
 	    		tipo = moddevList.get(i);
 			}else {
 				list.add(moddevList.get(i));

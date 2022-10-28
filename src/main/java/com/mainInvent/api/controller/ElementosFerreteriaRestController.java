@@ -157,7 +157,7 @@ public class ElementosFerreteriaRestController {
 	    
 	    for (int i = 0; i < eleferreList.size(); i++) {
 	    	
-	    	if (tipo.equals(eleferreList.get(i))) {
+	    	if (tipo.equalsIgnoreCase(eleferreList.get(i))) {
 	    		tipo = eleferreList.get(i);
 			}else {
 				list.add(eleferreList.get(i));

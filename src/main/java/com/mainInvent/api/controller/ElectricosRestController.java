@@ -152,7 +152,7 @@ public class ElectricosRestController {
 	    
 	    for (int i = 0; i < electricosList.size(); i++) {
 	    	
-	    	if (tipo.equals(electricosList.get(i))) {
+	    	if (tipo.equalsIgnoreCase(electricosList.get(i))) {
 	    		tipo = electricosList.get(i);
 			}else {
 				list.add(electricosList.get(i));

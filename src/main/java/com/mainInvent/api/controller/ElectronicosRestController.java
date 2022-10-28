@@ -173,7 +173,7 @@ public class ElectronicosRestController {
 	    
 	    for (int i = 0; i < electronicosList.size(); i++) {
 	    	
-	    	if (tipo.equals(electronicosList.get(i))) {
+	    	if (tipo.equalsIgnoreCase(electronicosList.get(i))) {
 	    		tipo = electronicosList.get(i);
 			}else {
 				list.add(electronicosList.get(i));
