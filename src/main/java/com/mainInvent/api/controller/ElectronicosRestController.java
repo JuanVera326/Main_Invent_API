@@ -183,4 +183,12 @@ public class ElectronicosRestController {
 	    		
 	return list;
   }
+  @GetMapping("/electronicos/general/id/{ids}")
+	public List<ElectronicosVo> getElectronicosByIdGeneral(@PathVariable(value = "ids") Long electronicos_id){
+    	
+    	List<ElectronicosVo> electronicosList = StreamSupport
+				.stream(electronicosService.encontrarPorIdGeneral(electronicos_id).spliterator(), false).collect(Collectors.toList());
+		return electronicosList;
+	}
 }
+

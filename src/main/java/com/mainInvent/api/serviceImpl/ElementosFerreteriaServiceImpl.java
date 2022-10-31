@@ -72,5 +72,10 @@ public class ElementosFerreteriaServiceImpl implements IElementosFerreteriaServi
 	public Iterable<String> obtenerTipos() {
 		return eleFerreRepo.getTipos();
 	}
-
+	@Override
+	@Transactional(readOnly = true)
+	public Iterable<ElementosFerrerteriaVo> encontrarPorIdGeneral(Long id) {
+		return eleFerreRepo.getId_eleferre_items(id);
+	}
+	
 }

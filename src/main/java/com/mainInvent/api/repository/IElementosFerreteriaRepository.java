@@ -15,7 +15,7 @@ public interface IElementosFerreteriaRepository extends JpaRepository<ElementosF
 	@Query(nativeQuery = false, value = " SELECT f FROM ElementosFerrerteriaVo f WHERE nombre_parte_elementosferreteria = ?1")
 	public Optional<ElementosFerrerteriaVo> findByNombre(String nombre);
 	
-	@Query(nativeQuery = false, value = " SELECT f FROM ElementosFerrerteriaVo f WHERE tipo_parte_elementosferreteria = ?1")
+	@Query(nativeQuery = true, value = " SELECT * FROM elementosferreteria_items f WHERE tipo_elementosferreteria_items REGEXP CONCAT('^',?1)")
 	public Iterable<ElementosFerrerteriaVo> findByTipo_parte_elementosferreteria(String tipo);
 	
 	@Query(nativeQuery = true, value = "SELECT * FROM elementosferreteria_items WHERE nombre_elementosferreteria_item LIKE %?1%")
@@ -23,5 +23,8 @@ public interface IElementosFerreteriaRepository extends JpaRepository<ElementosF
 	
 	@Query(nativeQuery = true, value = " SELECT tipo_elementosferreteria_items FROM elementosferreteria_items")
 	public Iterable<String> getTipos();
+	
+	@Query(nativeQuery = true, value = "SELECT * from elementosferreteria_items WHERE id_elementosferreteria_item REGEXP CONCAT('^',?1)")
+	public Iterable<ElementosFerrerteriaVo> getId_eleferre_items(Long id);
 }
 

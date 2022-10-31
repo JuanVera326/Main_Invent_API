@@ -162,4 +162,12 @@ public class ElectricosRestController {
 	    		
 	return list;
     }
+    
+    @GetMapping("/electricos/general/id/{ids}")
+	public List<ElectricosVo> getElectricosByIdGeneral(@PathVariable(value = "ids") Long electricos_id){
+    	
+    	List<ElectricosVo> electricosList = StreamSupport
+				.stream(electricosService.encontrarPorIdGeneral(electricos_id).spliterator(), false).collect(Collectors.toList());
+		return electricosList;
+	}
 }

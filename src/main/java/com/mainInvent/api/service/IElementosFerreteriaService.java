@@ -24,6 +24,7 @@ public interface IElementosFerreteriaService {
 	
 	public Iterable<String> obtenerTipos();
 	
+	public Iterable<ElementosFerrerteriaVo> encontrarPorIdGeneral(Long id);
 	
 	public ElementosFerrerteriaVo save(ElementosFerrerteriaVo usuario);
 	

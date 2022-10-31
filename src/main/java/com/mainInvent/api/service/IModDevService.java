@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+
 import com.mainInvent.api.entity.ModDevVo;
 
 
@@ -23,6 +24,8 @@ public interface IModDevService {
 	public Iterable<ModDevVo> encontarPorNombreGeneral(String name);
 	
 	public Iterable<String> obtenerTipos();
+	
+	public Iterable<ModDevVo> encontrarPorIdGeneral(Long id);
 	
 	
 	public ModDevVo save(ModDevVo itemmoddev);

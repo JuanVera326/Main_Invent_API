@@ -16,7 +16,7 @@ public interface IElectricosRepository extends JpaRepository<ElectricosVo, Long>
 	@Query(nativeQuery = false, value = " SELECT e FROM ElectricosVo e WHERE nombre_electricos_item = ?1")
 	public Optional<ElectricosVo> findByName(String nombre);
 	
-	@Query(nativeQuery = false, value = " SELECT e FROM ElectricosVo e WHERE tipo_electricos_item = ?1")
+	@Query(nativeQuery = true, value = "SELECT * FROM electricos_items WHERE tipo_electricos_item REGEXP CONCAT('^',?1)")
 	public Iterable<ElectricosVo> findByTipo_electricos_item(String tipo);
 	
 	@Query(nativeQuery = true, value = "SELECT * FROM electricos_items WHERE nombre_electricos_item LIKE %?1%")
@@ -24,4 +24,7 @@ public interface IElectricosRepository extends JpaRepository<ElectricosVo, Long>
 	
 	@Query(nativeQuery = true, value = " SELECT tipo_electricos_item FROM electricos_items")
 	public Iterable<String> getTipos();
+	
+	@Query(nativeQuery = true, value = "SELECT * from electricos_items WHERE id_electricos_items REGEXP CONCAT('^',?1)")
+	public Iterable<ElectricosVo> getId_electricos_items(Long id);
 }

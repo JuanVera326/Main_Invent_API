@@ -71,6 +71,12 @@ public class ElectricosServiceImpl implements IElectricosService{
 	public Iterable<String> obtenerTipos() {
 		return electricosRepo.getTipos();
 	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Iterable<ElectricosVo> encontrarPorIdGeneral(Long id) {
+		return electricosRepo.getId_electricos_items(id);
+	}
 	
 	
 }

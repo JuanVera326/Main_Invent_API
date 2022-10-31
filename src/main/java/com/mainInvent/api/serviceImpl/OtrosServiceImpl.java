@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import com.mainInvent.api.entity.OtrosVo;
 import com.mainInvent.api.repository.IOtrosRepository;
 import com.mainInvent.api.service.IOtrosService;
@@ -72,4 +73,9 @@ public class OtrosServiceImpl implements IOtrosService{
 		return repoOtros.getTipos();
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public Iterable<OtrosVo> encontrarPorIdGeneral(Long id) {
+		return repoOtros.getId_otros_items(id);
+	}
 }

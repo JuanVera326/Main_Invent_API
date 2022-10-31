@@ -24,6 +24,8 @@ public interface IElectricosService {
 	
 	public Iterable<String> obtenerTipos();
 	
+	public Iterable<ElectricosVo> encontrarPorIdGeneral(Long id);
+	
 	
 	public ElectricosVo save(ElectricosVo itemelectricos);
 	

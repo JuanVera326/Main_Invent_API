@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import com.mainInvent.api.entity.ModDevVo;
 import com.mainInvent.api.repository.IModDevRepository;
 import com.mainInvent.api.service.IModDevService;
@@ -71,5 +72,9 @@ public class ModDevServiceImpl implements IModDevService{
 	public Iterable<String> obtenerTipos() {
 		return modDevRepo.getTipos();
 	}
-
+	@Override
+	@Transactional(readOnly = true)
+	public Iterable<ModDevVo> encontrarPorIdGeneral(Long id) {
+		return modDevRepo.getId_moddev_items(id);
+	}
 }

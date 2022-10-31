@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.mainInvent.api.entity.ModDevVo;
 import com.mainInvent.api.service.IModDevService;
 
@@ -166,4 +167,11 @@ public class ModDevRestController {
 	    		
 	return list;
     }
+    @GetMapping("/moddev/general/id/{ids}")
+   	public List<ModDevVo> getmoddevByIdGeneral(@PathVariable(value = "ids") Long moddev_id){
+       	
+       	List<ModDevVo> moddevList = StreamSupport
+   				.stream(modDevService.encontrarPorIdGeneral(moddev_id).spliterator(), false).collect(Collectors.toList());
+   		return moddevList;
+   	}
 }

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.mainInvent.api.entity.OtrosVo;
 import com.mainInvent.api.service.IOtrosService;
 
@@ -167,4 +168,11 @@ public class OtrosRestController {
 	    		
 	return list;
     }
+    @GetMapping("/otros/general/id/{ids}")
+   	public List<OtrosVo> getOtrosByIdGeneral(@PathVariable(value = "ids") Long otros_id){
+       	
+       	List<OtrosVo> OtrosList = StreamSupport
+   				.stream(otrosService.encontrarPorIdGeneral(otros_id).spliterator(), false).collect(Collectors.toList());
+   		return OtrosList;
+   	}
 }

@@ -15,7 +15,7 @@ public interface IElectronicosRepository extends JpaRepository<ElectronicosVo, L
 	@Query(nativeQuery = false, value = " SELECT e FROM ElectronicosVo e WHERE nombre_electronicos_item = ?1")
 	public Optional<ElectronicosVo> findByName(String nombre);
 	
-	@Query(nativeQuery = false, value = "SELECT e FROM ElectronicosVo e WHERE tipo_electronicos_items = ?1")
+	@Query(nativeQuery = true, value = "SELECT * FROM electronicos_items WHERE tipo_electronicos_items REGEXP CONCAT('^',?1)")
 	public Iterable<ElectronicosVo> findByTipo_comp(String tipo);
 	
 	@Query(nativeQuery = false, value = "SELECT e FROM ElectronicosVo e WHERE numero_partefabricante_comp = ?1")
@@ -26,4 +26,7 @@ public interface IElectronicosRepository extends JpaRepository<ElectronicosVo, L
 	
 	@Query(nativeQuery = true, value = " SELECT tipo_electronicos_items FROM electronicos_items")
 	public Iterable<String> getTipos();
+	
+	@Query(nativeQuery = true, value = "SELECT * from electronicos_items WHERE id_electronicos_items REGEXP CONCAT('^',?1)")
+	public Iterable<ElectronicosVo> getId_electronicos_items(Long id);
 } 

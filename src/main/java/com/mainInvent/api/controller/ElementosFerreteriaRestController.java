@@ -167,5 +167,11 @@ public class ElementosFerreteriaRestController {
 	    		
 	return list;
     }
-    
+    @GetMapping("/eleferre/general/id/{ids}")
+	public List<ElementosFerrerteriaVo> getElectricosByIdGeneral(@PathVariable(value = "ids") Long eleferre_id){
+    	
+    	List<ElementosFerrerteriaVo> eleferreList = StreamSupport
+				.stream(eleFerreService.encontrarPorIdGeneral(eleferre_id).spliterator(), false).collect(Collectors.toList());
+		return eleferreList;
+	}
 }
