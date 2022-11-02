@@ -2,6 +2,8 @@ package com.mainInvent.api.dto;
 
 public class UsuarioDto {
 	
+	private Long id; 
+	
 	private String nombre;
 	
 	private String apellido;
@@ -23,7 +25,7 @@ public class UsuarioDto {
 		
 	}
 	
-	public UsuarioDto(String nombre, String apellido, String cargo, String imagen, String edad, int rol, String correo, boolean estado){
+	public UsuarioDto(String nombre, String apellido, String cargo, String imagen, String edad, int rol, String correo, boolean estado, Long id){
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -33,6 +35,15 @@ public class UsuarioDto {
 		this.rol = rol;
 		this.correo = correo;
 		this.estado = estado;
+		this.id = id;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNombre() {

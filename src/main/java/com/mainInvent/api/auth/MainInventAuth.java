@@ -45,7 +45,7 @@ public class MainInventAuth {
 					UsuarioDto userAuthAccepted = new UsuarioDto( userAuth.get().getNombre(),
 							userAuth.get().getApellido(), userAuth.get().getCargo(), userAuth.get().getImagen(),
 							userAuth.get().getEdad(), userAuth.get().getRol(), userAuth.get().getCorreo(), 
-							userAuth.get().getEstado());
+							userAuth.get().getEstado(),userAuth.get().getId());
 					
 					return ResponseEntity.status(HttpStatus.ACCEPTED).body(userAuthAccepted);
 					
