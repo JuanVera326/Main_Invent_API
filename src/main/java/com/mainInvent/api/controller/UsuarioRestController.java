@@ -155,4 +155,13 @@ public class UsuarioRestController {
 		return usuariosList;
 	}
 	
+	@GetMapping("/usuarios/id/{id}")
+	public List<UsuarioVo> getUserByGeneralID(@PathVariable Long id){
+		
+		List<UsuarioVo> usuariosList = StreamSupport
+				.stream(usuarioService.encontrarPorId(id).spliterator(), false).collect(Collectors.toList());
+		
+		return usuariosList;
+	}
+	
 }

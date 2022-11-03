@@ -21,6 +21,8 @@ public interface IUsuarioService {
 	
 	public Iterable<UsuarioVo> encontrarPorCargo(String cargo);
 	
+	public Iterable<UsuarioVo> encontrarPorId(Long id);
+	
  	
 	public UsuarioVo save(UsuarioVo usuario);
 	

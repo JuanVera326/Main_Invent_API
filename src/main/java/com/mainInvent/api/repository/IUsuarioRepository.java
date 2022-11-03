@@ -12,12 +12,15 @@ import com.mainInvent.api.entity.UsuarioVo;
 @Repository
 public interface IUsuarioRepository extends JpaRepository<UsuarioVo, Long>{
 	
-	@Query(nativeQuery = false, value = " SELECT u FROM UsuarioVo u WHERE nombre = ?1")
+	@Query(nativeQuery = true, value = " SELECT * FROM usuarios WHERE nombre_usuario REGEXP CONCAT('^',?1)")
 	public Iterable<UsuarioVo> findByNombre(String nombre);
 	
-	@Query(nativeQuery = false, value = " SELECT u FROM UsuarioVo u WHERE cargo = ?1")
+	@Query(nativeQuery = true, value = " SELECT * FROM usuarios WHERE cargo_usuario REGEXP CONCAT('^',?1)")
 	public Iterable<UsuarioVo> findByCargo(String parte);
 	
 	@Query(nativeQuery = false, value = " SELECT u FROM UsuarioVo u WHERE correo = ?1")
 	public Optional<UsuarioVo> findByCorreo(String parte);
+	
+	@Query(nativeQuery = true, value = " SELECT * FROM usuarios WHERE id_usuario REGEXP CONCAT('^',?1)")
+	public Iterable<UsuarioVo> findByGeneralID(Long id);
 }
