@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mainInvent.api.dto.UsuarioDto;
 import com.mainInvent.api.entity.UsuarioVo;
 import com.mainInvent.api.service.IUsuarioService;
 
@@ -63,7 +64,12 @@ public class UsuarioRestController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msj);
 		}
 		
-		return ResponseEntity.ok(oUsuario);
+		UsuarioDto user = new UsuarioDto( oUsuario.get().getNombre(),
+				oUsuario.get().getApellido(), oUsuario.get().getCargo(), oUsuario.get().getImagen(),
+				oUsuario.get().getEdad(), oUsuario.get().getRol(), oUsuario.get().getCorreo(), 
+				oUsuario.get().getEstado(),oUsuario.get().getId());
+		
+		return ResponseEntity.ok(user);
 	}
 	
 	
