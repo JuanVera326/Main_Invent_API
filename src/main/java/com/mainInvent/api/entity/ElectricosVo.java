@@ -18,7 +18,7 @@ public class ElectricosVo implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "id_electronicos_items")
+	@Column(name = "id_electricos_items")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_parte_electricos;
 	

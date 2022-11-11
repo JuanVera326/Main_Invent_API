@@ -25,6 +25,6 @@ public interface IElectricosRepository extends JpaRepository<ElectricosVo, Long>
 	@Query(nativeQuery = true, value = " SELECT tipo_electricos_item FROM electricos_items")
 	public Iterable<String> getTipos();
 	
-	@Query(nativeQuery = true, value = "SELECT * from electricos_items WHERE id_electricos_items REGEXP CONCAT('^',?1)")
+	@Query(nativeQuery = true, value = "SELECT * FROM electricos_items WHERE id_electricos_items REGEXP CONCAT('^',?1)")
 	public Iterable<ElectricosVo> getId_electricos_items(Long id);
 }
