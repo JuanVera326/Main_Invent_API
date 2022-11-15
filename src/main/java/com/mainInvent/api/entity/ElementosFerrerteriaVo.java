@@ -1,12 +1,14 @@
 package com.mainInvent.api.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -42,8 +44,9 @@ public class ElementosFerrerteriaVo implements Serializable{
 	@Column(name = "ubicacion_elementosferreteria_items", nullable = false , length = 250)
 	private String ubicacion_parte_elementosferreteria;
 	
+	@OneToMany
 	@Column(name = "datasheet_elementosferreteria_items" , length = 800)
-	private String datasheet_parte_elementosferreteria;
+	private List<Documentos_DatasheetsVo> datasheet_parte_elementosferreteria;
 	
 	public ElementosFerrerteriaVo() {
 		
@@ -51,7 +54,7 @@ public class ElementosFerrerteriaVo implements Serializable{
 	
 	public ElementosFerrerteriaVo(Long id_parte_elementosferreteria, String nombre_parte_elementosferreteria, String imagen_parte_elementosferreteria,
 			String descripcion_parte_elementosferreteria, String tipo_parte_elementosferreteria,int cantidad_disponible_elementosferreteria,int cantidad_consumida_elementosferreteria,
-			String ubicacion_parte_elementosferreteria, String datasheet_parte_elementosferreteria) {
+			String ubicacion_parte_elementosferreteria, List<Documentos_DatasheetsVo> datasheet_parte_elementosferreteria) {
 		super();
 		this.id_parte_elementosferreteria = id_parte_elementosferreteria;
 		this.nombre_parte_elementosferreteria = nombre_parte_elementosferreteria;
@@ -112,10 +115,10 @@ public class ElementosFerrerteriaVo implements Serializable{
 	public void setUbicacion_parte_elementosferreteria(String ubicacion_parte_elementosferreteria) {
 		this.ubicacion_parte_elementosferreteria = ubicacion_parte_elementosferreteria;
 	}
-	public String getDatasheet_parte_elementosferreteria() {
+	public List<Documentos_DatasheetsVo> getDatasheet_parte_elementosferreteria() {
 		return datasheet_parte_elementosferreteria;
 	}
-	public void setDatasheet_parte_elementosferreteria(String datasheet_parte_elementosferreteria) {
+	public void setDatasheet_parte_elementosferreteria(List<Documentos_DatasheetsVo> datasheet_parte_elementosferreteria) {
 		this.datasheet_parte_elementosferreteria = datasheet_parte_elementosferreteria;
 	}
 	

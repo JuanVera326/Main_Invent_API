@@ -1,13 +1,16 @@
 package com.mainInvent.api.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 
 
@@ -43,8 +46,9 @@ public class ElectricosVo implements Serializable{
 	@Column(name = "ubicacion_electricos_item", nullable = false , length = 250)
 	private String ubicacion_parte_electricos;
 	
+	@OneToMany
 	@Column(name = "datasheet_electricos_item" , length = 800)
-	private String datasheet_parte_electricos;
+	private List<Documentos_DatasheetsVo> datasheet_parte_electricos;
 	
 	public ElectricosVo() {
 		
@@ -52,7 +56,7 @@ public class ElectricosVo implements Serializable{
 	
 	public ElectricosVo(Long id_parte_electricos, String imagen_parte_electricos, String descripcion_parte_electricos,
 			String tipo_parte_electricos, int cantidad_disponible_electricos, int cantidad_consumida_electricos,
-			String ubicacion_parte_electricos, String datasheet_parte_electricos, String nombre_parte_electricos) {
+			String ubicacion_parte_electricos, List<Documentos_DatasheetsVo> datasheet_parte_electricos, String nombre_parte_electricos) {
 		super();
 		this.id_parte_electricos = id_parte_electricos;
 		this.imagen_parte_electricos = imagen_parte_electricos;
@@ -114,10 +118,10 @@ public class ElectricosVo implements Serializable{
 	public void setUbicacion_parte_electricos(String ubicacion_parte_electricos) {
 		this.ubicacion_parte_electricos = ubicacion_parte_electricos;
 	}
-	public String getDatasheet_parte_electricos() {
+	public List<Documentos_DatasheetsVo> getDatasheet_parte_electricos() {
 		return datasheet_parte_electricos;
 	}
-	public void setDatasheet_parte_electricos(String datasheet_parte_electricos) {
+	public void setDatasheet_parte_electricos(List<Documentos_DatasheetsVo> datasheet_parte_electricos) {
 		this.datasheet_parte_electricos = datasheet_parte_electricos;
 	}
 

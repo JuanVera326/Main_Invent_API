@@ -1,12 +1,14 @@
 package com.mainInvent.api.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -51,8 +53,9 @@ public class ElectronicosVo implements Serializable{
 	@Column(name = "ubicacion_electronicos_items", nullable = false , length = 250)
 	private String ubicacion_comp;
 	
+	@OneToMany
 	@Column(name = "datasheet_electronicos_items" , nullable = false , length = 800)
-	private String datasheet_comp;
+	private List<Documentos_DatasheetsVo> datasheet_comp;
 	
 	public ElectronicosVo() {
 		
@@ -60,7 +63,7 @@ public class ElectronicosVo implements Serializable{
 	
 	public ElectronicosVo(Long id_Comp, String nombre_comp,String numero_partefabricante_comp, String pinout_comp,
 			String esquematico_comp, String descripcion_comp, String tipo_comp, String encampsulado_comp,
-			int cantidad_disponible_comp,int cantidad_consumida_comp, String ubicacion_comp, String datasheet_comp) {
+			int cantidad_disponible_comp,int cantidad_consumida_comp, String ubicacion_comp, List<Documentos_DatasheetsVo> datasheet_comp) {
 		super();
 		this.id_Comp = id_Comp;
 		this.nombre_comp = nombre_comp;
@@ -143,10 +146,10 @@ public class ElectronicosVo implements Serializable{
 	public void setUbicacion_comp(String ubicacion_comp) {
 		this.ubicacion_comp = ubicacion_comp;
 	}
-	public String getDatasheet_comp() {
+	public List<Documentos_DatasheetsVo> getDatasheet_comp() {
 		return datasheet_comp;
 	}
-	public void setDatasheet_comp(String datasheet_comp) {
+	public void setDatasheet_comp(List<Documentos_DatasheetsVo> datasheet_comp) {
 		this.datasheet_comp = datasheet_comp;
 	}
 	
