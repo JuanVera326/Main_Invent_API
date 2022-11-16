@@ -1,14 +1,12 @@
 package com.mainInvent.api.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -44,9 +42,8 @@ public class OtrosVo implements Serializable{
 	@Column(name = "ubicacion_otro_items", nullable = false , length = 250)
 	private String ubicacion_parte_otros;
 	
-	@OneToMany
 	@Column(name = "datasheet_otro_items" , nullable = false , length = 800)
-	private List<Documentos_DatasheetsVo> datasheet_parte_otros;
+	private String datasheet_parte_otros;
 	
 	public OtrosVo() {
 		
@@ -54,7 +51,7 @@ public class OtrosVo implements Serializable{
 	
 	public OtrosVo(Long id_parte_otros, String nombre_parte_otros, String imagen_parte_otros,
 			String descripcion_parte_otros, String tipo_parte_otros,int cantidad_disponible_otros,int cantidad_consumida_otros,
-			String ubicacion_parte_otros, List<Documentos_DatasheetsVo> datasheet_parte_otros) {
+			String ubicacion_parte_otros, String datasheet_parte_otros) {
 		super();
 		this.id_parte_otros = id_parte_otros;
 		this.nombre_parte_otros = nombre_parte_otros;
@@ -115,10 +112,10 @@ public class OtrosVo implements Serializable{
 	public void setUbicacion_parte_otros(String ubicacion_parte_otros) {
 		this.ubicacion_parte_otros = ubicacion_parte_otros;
 	}
-	public List<Documentos_DatasheetsVo> getDatasheet_parte_otros() {
+	public String getDatasheet_parte_otros() {
 		return datasheet_parte_otros;
 	}
-	public void setDatasheet_parte_otros(List<Documentos_DatasheetsVo> datasheet_parte_otros) {
+	public void setDatasheet_parte_otros(String datasheet_parte_otros) {
 		this.datasheet_parte_otros = datasheet_parte_otros;
 	}
 	

@@ -1,14 +1,12 @@
 package com.mainInvent.api.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -44,9 +42,8 @@ public class ModDevVo implements Serializable{
 	@Column(name = "ubicacion_moddev_item", nullable = false , length = 250)
 	private String ubicacion_parte_moddev;
 	
-	@OneToMany
 	@Column(name = "datasheet_moddev_item" , length = 800)
-	private List<Documentos_DatasheetsVo> datasheet_parte_moddev;
+	private String datasheet_parte_moddev;
 	
 	public ModDevVo() {
 			
@@ -54,7 +51,7 @@ public class ModDevVo implements Serializable{
 	
 	public ModDevVo(Long id_parte_moddev, String nombre_partemoddev, String imagen_partemoddev,
 			String descripcion_parte_moddev, String tipo_parte_moddev,int cantidad_disponible_moddev,int cantidad_consumida_moddev,
-			String ubicacion_parte_moddev, List<Documentos_DatasheetsVo> datasheet_parte_moddev) {
+			String ubicacion_parte_moddev, String datasheet_parte_moddev) {
 		super();
 		this.id_parte_moddev = id_parte_moddev;
 		this.nombre_partemoddev = nombre_partemoddev;
@@ -115,10 +112,10 @@ public class ModDevVo implements Serializable{
 	public void setUbicacion_parte_moddev(String ubicacion_parte_moddev) {
 		this.ubicacion_parte_moddev = ubicacion_parte_moddev;
 	}
-	public List<Documentos_DatasheetsVo> getDatasheet_parte_moddev() {
+	public String getDatasheet_parte_moddev() {
 		return datasheet_parte_moddev;
 	}
-	public void setDatasheet_parte_moddev(List<Documentos_DatasheetsVo> datasheet_parte_moddev) {
+	public void setDatasheet_parte_moddev(String datasheet_parte_moddev) {
 		this.datasheet_parte_moddev = datasheet_parte_moddev;
 	}
 }
