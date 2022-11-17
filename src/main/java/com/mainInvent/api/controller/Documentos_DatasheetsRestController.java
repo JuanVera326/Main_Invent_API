@@ -24,6 +24,8 @@ public class Documentos_DatasheetsRestController {
 	@PostMapping("/files/{id}/{name}/{keys}")
 	public ResponseEntity<?> saveFile(@RequestBody MultipartFile file, @PathVariable String keys , @PathVariable Long id , @PathVariable String name){
 		
+		Documentos_DatasheetsVo pdf = new Documentos_DatasheetsVo();
+		
 		if (!keys.equals(acces_key)) {
 			String msj = "No Autorizado";
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msj);
@@ -34,11 +36,10 @@ public class Documentos_DatasheetsRestController {
 			try {
 				
 				byte[] bytes = file.getBytes();
-			
-				Documentos_DatasheetsVo pdf = new Documentos_DatasheetsVo();
 				
 				pdf.setId_doc("" + name + id);
 				pdf.setFile(bytes);
+				System.out.println(pdf);
 				
 			} catch (Exception e) {
 				
@@ -50,7 +51,7 @@ public class Documentos_DatasheetsRestController {
 			
 		}
 		
-		return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(pdf);
 	}
 
 }
