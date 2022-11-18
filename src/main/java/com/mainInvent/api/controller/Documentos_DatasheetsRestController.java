@@ -1,5 +1,6 @@
 package com.mainInvent.api.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mainInvent.api.entity.Documentos_DatasheetsVo;
+import com.mainInvent.api.service.IDocumentos_DatasheetsService;
 
 @RestController
 @RequestMapping("/api")
@@ -20,9 +22,12 @@ public class Documentos_DatasheetsRestController {
 	
 	String acces_key = "bWF0aWFzLm1hL25zZnc=";
 	
+	@Autowired
+	private IDocumentos_DatasheetsService fileAct;
 	
 	@PostMapping("/files/{id}/{name}/{keys}")
 	public ResponseEntity<?> saveFile(@RequestBody MultipartFile file, @PathVariable String keys , @PathVariable Long id , @PathVariable String name){
+		
 		
 		Documentos_DatasheetsVo pdf = new Documentos_DatasheetsVo();
 		
@@ -39,7 +44,8 @@ public class Documentos_DatasheetsRestController {
 				
 				pdf.setId_doc("" + name + id);
 				pdf.setFile(bytes);
-				System.out.println(pdf);
+				
+				fileAct.save(pdf);
 				
 			} catch (Exception e) {
 				
