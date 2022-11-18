@@ -45,7 +45,7 @@ public class ElementosFerrerteriaVo implements Serializable{
 	@Column(name = "datasheet_elementosferreteria_items" , length = 800)
 	private String datasheet_parte_elementosferreteria;
 	
-	public ElementosFerrerteriaVo() {
+	public ElementosFerrerteriaVo() { 
 		
 	}
 	
