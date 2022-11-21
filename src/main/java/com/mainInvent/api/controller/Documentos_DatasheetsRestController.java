@@ -1,9 +1,12 @@
 package com.mainInvent.api.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -59,5 +62,20 @@ public class Documentos_DatasheetsRestController {
 		
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(pdf);
 	}
+	
+	
+	@GetMapping("/files/{id}")
+	public ResponseEntity<?> getElectricos(@PathVariable(value = "id") Long id_file){
+		
+		Optional<Documentos_DatasheetsVo> file = fileAct.findByID(id_file);
+		
+		if (!file.isPresent()){
+			String msj = "El item de categoria Electricos con id "+ id_file +" no esta registrado";
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msj);
+		}
+		
+		return ResponseEntity.ok(file);
+	}
+	
 
 }
