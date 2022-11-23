@@ -6,4 +6,4 @@ import org.springframework.stereotype.Repository;
 import com.mainInvent.api.entity.Documentos_DatasheetsVo;
 
 @Repository
-public interface IDocumentos_DatasheetsRepository extends JpaRepository<Documentos_DatasheetsVo, Long>{}
+public interface IDocumentos_DatasheetsRepository extends JpaRepository<Documentos_DatasheetsVo, String>{}

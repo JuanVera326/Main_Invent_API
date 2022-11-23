@@ -42,7 +42,7 @@ public class Documentos_DatasheetsRestController {
 		if (!file.isEmpty()) {
 			
 			try {
-				
+			
 				byte[] bytes = file.getBytes();
 				
 				pdf.setId_doc("" + name + id);
@@ -65,17 +65,16 @@ public class Documentos_DatasheetsRestController {
 	
 	
 	@GetMapping("/files/{id}")
-	public ResponseEntity<?> getElectricos(@PathVariable(value = "id") Long id_file){
+	public ResponseEntity<?> getElectricos(@PathVariable String id){
 		
-		Optional<Documentos_DatasheetsVo> file = fileAct.findByID(id_file);
+		Optional<Documentos_DatasheetsVo> file = fileAct.findByID(id);
 		
 		if (!file.isPresent()){
-			String msj = "El item de categoria Electricos con id "+ id_file +" no esta registrado";
+			String msj = "El item de categoria Electricos con id "+ id +" no esta registrado";
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msj);
 		}
 		
-		return ResponseEntity.ok(file);
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(file.get());
 	}
-	
 
 }

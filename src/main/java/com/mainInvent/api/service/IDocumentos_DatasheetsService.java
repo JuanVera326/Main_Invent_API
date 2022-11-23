@@ -10,9 +10,9 @@ public interface IDocumentos_DatasheetsService {
 	
 	public Iterable<Documentos_DatasheetsVo> findAll();
 	
-	public Optional<Documentos_DatasheetsVo> findByID(Long id);
+	public Optional<Documentos_DatasheetsVo> findByID(String id);
 	
 	public Documentos_DatasheetsVo save(Documentos_DatasheetsVo file);
 
-	public void deleteById(Long id);
+	public void deleteById(String id);
 }

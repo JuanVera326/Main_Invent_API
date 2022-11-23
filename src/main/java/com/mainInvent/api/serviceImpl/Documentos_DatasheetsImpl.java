@@ -24,7 +24,7 @@ public class Documentos_DatasheetsImpl implements IDocumentos_DatasheetsService{
 
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<Documentos_DatasheetsVo> findByID(Long id) {
+	public Optional<Documentos_DatasheetsVo> findByID(String id) {
 		return repoFiles.findById(id);
 	}
 
@@ -36,7 +36,7 @@ public class Documentos_DatasheetsImpl implements IDocumentos_DatasheetsService{
 
 	@Override
 	@Transactional
-	public void deleteById(Long id) {
+	public void deleteById(String id) {
 		repoFiles.deleteById(id);
 	}
 
