@@ -155,14 +155,22 @@ public class ElementosFerreteriaRestController {
 	    String tipo = "";
 	    List<String> list = new ArrayList<String>();
 	    
-	    for (int i = 0; i < eleferreList.size(); i++) {
+		if (list.isEmpty()) {
+					
+	    	list.add("Crea una categoria nueva");
 	    	
-	    	if (tipo.equalsIgnoreCase(eleferreList.get(i))) {
-	    		tipo = eleferreList.get(i);
-			}else {
-				list.add(eleferreList.get(i));
-				tipo = eleferreList.get(i);
+		}else {
+			
+			for (int i = 0; i < eleferreList.size(); i++) {
+		    	
+		    	if (tipo.equalsIgnoreCase(eleferreList.get(i))) {
+		    		tipo = eleferreList.get(i);
+				}else {
+					list.add(eleferreList.get(i));
+					tipo = eleferreList.get(i);
+				}
 			}
+			
 		}
 	    		
 	return list;

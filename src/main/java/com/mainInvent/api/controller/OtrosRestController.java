@@ -156,16 +156,23 @@ public class OtrosRestController {
 	    String tipo = "";
 	    List<String> list = new ArrayList<String>();
 	    
-	    for (int i = 0; i < otrosList.size(); i++) {
+	    if (list.isEmpty()) {
+			
+	    	list.add("Crea una categoria nueva");
 	    	
-	    	if (tipo.equalsIgnoreCase(otrosList.get(i))) {
-	    		tipo = otrosList.get(i);
-			}else {
-				list.add(otrosList.get(i));
-				tipo = otrosList.get(i);
+		}else {
+			
+			for (int i = 0; i < otrosList.size(); i++) {
+		    	
+		    	if (tipo.equalsIgnoreCase(otrosList.get(i))) {
+		    		tipo = otrosList.get(i);
+				}else {
+					list.add(otrosList.get(i));
+					tipo = otrosList.get(i);
+				}
 			}
-		}
-	    		
+			
+		}	
 	return list;
     }
     @GetMapping("/otros/general/id/{ids}")

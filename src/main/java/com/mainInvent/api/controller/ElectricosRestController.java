@@ -148,19 +148,28 @@ public class ElectricosRestController {
 	    List<String> electricosList = (List<String>) electricosService.obtenerTipos();
 	    
 	    String tipo = "";
+	    
 	    List<String> list = new ArrayList<String>();
 	    
-	    for (int i = 0; i < electricosList.size(); i++) {
+	    if (list.isEmpty()) {
+			
+	    	list.add("Crea una categoria nueva");
 	    	
-	    	if (tipo.equalsIgnoreCase(electricosList.get(i))) {
-	    		tipo = electricosList.get(i);
-			}else {
-				list.add(electricosList.get(i));
-				tipo = electricosList.get(i);
+		}else {
+			
+			for (int i = 0; i < electricosList.size(); i++) {
+		    	
+		    	if (tipo.equalsIgnoreCase(electricosList.get(i))) {
+		    		tipo = electricosList.get(i);
+				}else {
+					list.add(electricosList.get(i));
+					tipo = electricosList.get(i);
+				}
 			}
+			
 		}
 	    		
-	return list;
+	    return list;
     }
     
     @GetMapping("/electricos/general/id/{ids}")

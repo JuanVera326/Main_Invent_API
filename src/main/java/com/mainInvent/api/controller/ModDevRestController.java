@@ -155,16 +155,23 @@ public class ModDevRestController {
 	    String tipo = "";
 	    List<String> list = new ArrayList<String>();
 	    
-	    for (int i = 0; i < moddevList.size(); i++) {
+	    if (list.isEmpty()) {
+			
+	    	list.add("Crea una categoria nueva");
 	    	
-	    	if (tipo.equalsIgnoreCase(moddevList.get(i))) {
-	    		tipo = moddevList.get(i);
-			}else {
-				list.add(moddevList.get(i));
-				tipo = moddevList.get(i);
+		}else {
+			
+			for (int i = 0; i < moddevList.size(); i++) {
+		    	
+		    	if (tipo.equalsIgnoreCase(moddevList.get(i))) {
+		    		tipo = moddevList.get(i);
+				}else {
+					list.add(moddevList.get(i));
+					tipo = moddevList.get(i);
+				}
 			}
-		}
-	    		
+			
+		}	
 	return list;
     }
     @GetMapping("/moddev/general/id/{ids}")
