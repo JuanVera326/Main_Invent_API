@@ -53,14 +53,17 @@ public class Documentos_DatasheetsRestController {
 			} catch (Exception e) {
 				
 				e.printStackTrace();
-				return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-
 					
 			}
 			
+			return ResponseEntity.status(HttpStatus.ACCEPTED).body(pdf);
+			
+		}else {
+			
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+
 		}
-		
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body(pdf);
+				
 	}
 	
 	
