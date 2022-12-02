@@ -68,7 +68,7 @@ public class Documentos_DatasheetsRestController {
 	
 	
 	@GetMapping("/files/{id}")
-	public ResponseEntity<?> getElectricos(@PathVariable String id){
+	public ResponseEntity<?> getFile(@PathVariable String id){
 		
 		Optional<Documentos_DatasheetsVo> file = fileAct.findByID(id);
 		
@@ -79,5 +79,19 @@ public class Documentos_DatasheetsRestController {
 		
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(file.get());
 	}
-
+	
+	@GetMapping("/files/{id}")
+	public ResponseEntity<?> delFiles(@PathVariable String id){
+		
+		Optional<Documentos_DatasheetsVo> file = fileAct.findByID(id);
+		
+		if (!file.isPresent()){
+			String msj = "Error";
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msj);
+		}
+		
+		fileAct.deleteById(id);
+		
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body("Eliminado");
+	}
 }
