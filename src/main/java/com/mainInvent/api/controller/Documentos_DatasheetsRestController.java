@@ -81,8 +81,13 @@ public class Documentos_DatasheetsRestController {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(file.get());
 	}
 	
-	@DeleteMapping("/files/{id}")
-	public ResponseEntity<?> delFiles(@PathVariable String id){
+	@DeleteMapping("/files/{id}/{keys}")
+	public ResponseEntity<?> delFiles(@PathVariable String id, @PathVariable String keys){
+		
+		if (!keys.equals(acces_key)) {
+			String msj = "No Autorizado";
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msj);
+		}
 		
 		Optional<Documentos_DatasheetsVo> file = fileAct.findByID(id);
 		
