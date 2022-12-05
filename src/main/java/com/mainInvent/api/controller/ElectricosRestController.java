@@ -151,7 +151,7 @@ public class ElectricosRestController {
 	    
 	    List<String> list = new ArrayList<String>();
 	    
-	    if (list.isEmpty()) {
+	    /*if (list.isEmpty()) {
 			
 	    	list.add("Crea una categoria nueva");
 	    	
@@ -167,7 +167,7 @@ public class ElectricosRestController {
 				}
 			}
 			
-		}
+		}*/
 	    		
 	    return list;
     }
