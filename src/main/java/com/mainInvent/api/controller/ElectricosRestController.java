@@ -169,7 +169,7 @@ public class ElectricosRestController {
 			
 		}
 	    		
-	    return electricosList;
+	    return list;
     }
     
     @GetMapping("/electricos/general/id/{ids}")
