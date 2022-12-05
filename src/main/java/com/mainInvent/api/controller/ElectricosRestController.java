@@ -82,7 +82,7 @@ public class ElectricosRestController {
 		
 		electricosOpti.get().setImagen_parte_electricos(electricos.getImagen_parte_electricos());
 		electricosOpti.get().setDescripcion_parte_electricos(electricos.getDescripcion_parte_electricos());
-		electricosOpti.get().setTipo_parte_electricos(electricos.getDescripcion_parte_electricos());
+		electricosOpti.get().setTipo_parte_electricos(electricos.getTipo_parte_electricos());
 		electricosOpti.get().setCantidad_disponible_electricos(electricos.getCantidad_disponible_electricos());
 		electricosOpti.get().setCantidad_consumida_electricos(electricos.getCantidad_consumida_electricos());
 		electricosOpti.get().setUbicacion_parte_electricos(electricos.getUbicacion_parte_electricos());
