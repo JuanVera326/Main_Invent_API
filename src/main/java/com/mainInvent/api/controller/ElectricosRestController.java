@@ -145,7 +145,8 @@ public class ElectricosRestController {
     @GetMapping("/electricos/tipos")
     public List<String> getTypes(){
     	
-	    List<String> electricosList = (List<String>) electricosService.obtenerTipos();
+	    List<String> electricosList = StreamSupport
+				.stream(electricosService.obtenerTipos().spliterator(), false).collect(Collectors.toList());
 	    
 	    String tipo = "";
 	    
