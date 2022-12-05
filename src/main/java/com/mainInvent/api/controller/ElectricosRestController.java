@@ -145,14 +145,13 @@ public class ElectricosRestController {
     @GetMapping("/electricos/tipos")
     public List<String> getTypes(){
     	
-	    List<String> electricosList = StreamSupport
-				.stream(electricosService.obtenerTipos().spliterator(), false).collect(Collectors.toList());
+	    List<String> electricosList = (List<String>) electricosService.obtenerTipos();
 	    
 	    String tipo = "";
 	    
 	    List<String> list = new ArrayList<String>();
 	    
-	    /*if (list.isEmpty()) {
+	    if (electricosList.isEmpty()) {
 			
 	    	list.add("Crea una categoria nueva");
 	    	
@@ -168,7 +167,7 @@ public class ElectricosRestController {
 				}
 			}
 			
-		}*/
+		}
 	    		
 	    return electricosList;
     }
