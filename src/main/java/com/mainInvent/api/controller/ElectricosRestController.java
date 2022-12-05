@@ -151,22 +151,15 @@ public class ElectricosRestController {
 	    
 	    List<String> list = new ArrayList<String>();
 	    
-	    if (electricosList.size() == 0) {
 			
-	    	list.add("Crea una categoria nueva");
+		for (int i = 0; i < electricosList.size(); i++) {
 	    	
-		}else {
-			
-			for (int i = 0; i < electricosList.size(); i++) {
-		    	
-		    	if (tipo.equalsIgnoreCase(electricosList.get(i))) {
-		    		tipo = electricosList.get(i);
-				}else {
-					list.add(electricosList.get(i));
-					tipo = electricosList.get(i);
-				}
+	    	if (tipo.equalsIgnoreCase(electricosList.get(i))) {
+	    		tipo = electricosList.get(i);
+			}else {
+				list.add(electricosList.get(i));
+				tipo = electricosList.get(i);
 			}
-			
 		}
 	    		
 	    return list;
