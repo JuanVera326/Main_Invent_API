@@ -88,7 +88,7 @@ public class ElectronicosRestController {
 	  electronicosOpti.get().setNombre_comp(electronicos.getNombre_comp());
 	  electronicosOpti.get().setNumero_partefabricante_comp(electronicos.getNumero_partefabricante_comp());
 	  electronicosOpti.get().setPinout_comp(electronicos.getPinout_comp());
-	  electronicosOpti.get().setEsquematico_comp(electronicos.getPinout_comp());
+	  electronicosOpti.get().setEsquematico_comp(electronicos.getEsquematico_comp());
 	  electronicosOpti.get().setDescripcion_comp(electronicos.getDescripcion_comp());
 	  electronicosOpti.get().setTipo_comp(electronicos.getTipo_comp());
 	  electronicosOpti.get().setEncampsulado_comp(electronicos.getEncampsulado_comp());
