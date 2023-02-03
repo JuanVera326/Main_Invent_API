@@ -80,6 +80,13 @@ public class ElectricosRestController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msj);
 		}
 		
+		Optional<ElectricosVo> opElectric = electricosService.encontrarPorNombreItem(electricos.getNombre_parte_electricos());
+		
+		if (opElectric.isPresent()) {
+			String msj = "El item de categoria Electricos ya esta registrado con este Nombre";
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msj);
+		}
+		
 		electricosOpti.get().setImagen_parte_electricos(electricos.getImagen_parte_electricos());
 		electricosOpti.get().setDescripcion_parte_electricos(electricos.getDescripcion_parte_electricos());
 		electricosOpti.get().setTipo_parte_electricos(electricos.getTipo_parte_electricos());
