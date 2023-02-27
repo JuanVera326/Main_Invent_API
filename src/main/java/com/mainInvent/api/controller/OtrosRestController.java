@@ -151,30 +151,23 @@ public class OtrosRestController {
     @GetMapping("/otros/tipos")
     public List<String> getTypes(){
     	
-	    List<String> otrosList = (List<String>) otrosService.obtenerTipos();
-	    
+    	List<String> otrosList = (List<String>) otrosService.obtenerTipos();
+	    // This is a easter Egg BLESSED
 	    String tipo = "";
 	    List<String> list = new ArrayList<String>();
 	    
-	    if (list.isEmpty()) {
-			
-	    	list.add("Crea una categoria nueva");
+	    for (int i = 0; i < otrosList.size(); i++) {
 	    	
-		}else {
-			
-			for (int i = 0; i < otrosList.size(); i++) {
-		    	
-		    	if (tipo.equalsIgnoreCase(otrosList.get(i))) {
-		    		tipo = otrosList.get(i);
-				}else {
-					list.add(otrosList.get(i));
-					tipo = otrosList.get(i);
-				}
+	    	if (tipo.equalsIgnoreCase(otrosList.get(i))) {
+	    		tipo = otrosList.get(i);
+			}else {
+				list.add(otrosList.get(i));
+				tipo = otrosList.get(i);
 			}
-			
-		}	
-	return list;
+		}
+	return otrosList;
     }
+    
     @GetMapping("/otros/general/id/{ids}")
    	public List<OtrosVo> getOtrosByIdGeneral(@PathVariable(value = "ids") Long otros_id){
        	

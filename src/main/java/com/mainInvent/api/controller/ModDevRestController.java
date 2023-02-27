@@ -150,30 +150,24 @@ public class ModDevRestController {
     @GetMapping("/moddev/tipos")
     public List<String> getTypes(){
     	
-	    List<String> moddevList = (List<String>) modDevService.obtenerTipos();
-	    
+    	List<String> moddevList = (List<String>) modDevService.obtenerTipos();
+	    // This is a easter Egg BLESSED
 	    String tipo = "";
 	    List<String> list = new ArrayList<String>();
 	    
-	    if (list.isEmpty()) {
-			
-	    	list.add("Crea una categoria nueva");
+	    for (int i = 0; i < moddevList.size(); i++) {
 	    	
-		}else {
-			
-			for (int i = 0; i < moddevList.size(); i++) {
-		    	
-		    	if (tipo.equalsIgnoreCase(moddevList.get(i))) {
-		    		tipo = moddevList.get(i);
-				}else {
-					list.add(moddevList.get(i));
-					tipo = moddevList.get(i);
-				}
+	    	if (tipo.equalsIgnoreCase(moddevList.get(i))) {
+	    		tipo = moddevList.get(i);
+			}else {
+				list.add(moddevList.get(i));
+				tipo = moddevList.get(i);
 			}
-			
-		}	
-	return list;
+		}
+	    
+	return moddevList;
     }
+    
     @GetMapping("/moddev/general/id/{ids}")
    	public List<ModDevVo> getmoddevByIdGeneral(@PathVariable(value = "ids") Long moddev_id){
        	

@@ -150,31 +150,23 @@ public class ElementosFerreteriaRestController {
     @GetMapping("/eleferre/tipos")
     public List<String> getTypes(){
     	
-	    List<String> eleferreList = (List<String>) eleFerreService.obtenerTipos();
-	    
+    	List<String> martillosList = (List<String>) eleFerreService.obtenerTipos();
+	    // This is a easter Egg BLESSED
 	    String tipo = "";
 	    List<String> list = new ArrayList<String>();
 	    
-		if (list.isEmpty()) {
-					
-	    	list.add("Crea una categoria nueva");
+	    for (int i = 0; i < martillosList.size(); i++) {
 	    	
-		}else {
-			
-			for (int i = 0; i < eleferreList.size(); i++) {
-		    	
-		    	if (tipo.equalsIgnoreCase(eleferreList.get(i))) {
-		    		tipo = eleferreList.get(i);
-				}else {
-					list.add(eleferreList.get(i));
-					tipo = eleferreList.get(i);
-				}
+	    	if (tipo.equalsIgnoreCase(martillosList.get(i))) {
+	    		tipo = martillosList.get(i);
+			}else {
+				list.add(martillosList.get(i));
+				tipo = martillosList.get(i);
 			}
-			
 		}
-	    		
-	return list;
+	return martillosList;
     }
+    
     @GetMapping("/eleferre/general/id/{ids}")
 	public List<ElementosFerrerteriaVo> getElectricosByIdGeneral(@PathVariable(value = "ids") Long eleferre_id){
     	

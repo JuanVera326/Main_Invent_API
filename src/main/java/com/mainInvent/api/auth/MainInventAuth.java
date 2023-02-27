@@ -34,7 +34,7 @@ public class MainInventAuth {
 			
 			if (userAuth.isEmpty()) {
 				
-				String msj = "Correo Icorrecto";
+				String msj = "Correo Incorrecto";
 				return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msj);
 				
 			}else {
