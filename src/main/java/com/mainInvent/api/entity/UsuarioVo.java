@@ -44,11 +44,14 @@ public class UsuarioVo implements Serializable{
 	@Column(name = "estado")
 	private boolean estado;
 	
+	@Column(name = "config_ubi", nullable = true, length = 1000)
+	private String config_ubi;
+	
 	public UsuarioVo(){
 		
 	}
 	
-	public UsuarioVo(String nombre, String apellido, String cargo, String imagen, String edad, int rol, Long id, String password, String correo, boolean estado){
+	public UsuarioVo(String nombre, String apellido, String cargo, String imagen, String edad, int rol, Long id, String password, String correo, boolean estado, String config_ubi){
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -60,6 +63,7 @@ public class UsuarioVo implements Serializable{
 		this.password = password;
 		this.correo = correo;
 		this.estado = estado;
+		this.config_ubi = config_ubi;
 	}
 	
 	public String getImagen() {
@@ -122,5 +126,10 @@ public class UsuarioVo implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+	public String getConfig_ubi() {
+		return config_ubi;
+	}
+	public void setConfig_ubi(String config_ubi) {
+		this.config_ubi = config_ubi;
+	}
 }

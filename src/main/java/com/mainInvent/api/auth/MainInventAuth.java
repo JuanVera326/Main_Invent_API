@@ -45,7 +45,11 @@ public class MainInventAuth {
 					UsuarioDto userAuthAccepted = new UsuarioDto( userAuth.get().getNombre(),
 							userAuth.get().getApellido(), userAuth.get().getCargo(), userAuth.get().getImagen(),
 							userAuth.get().getEdad(), userAuth.get().getRol(), userAuth.get().getCorreo(), 
-							userAuth.get().getEstado(),userAuth.get().getId());
+							userAuth.get().getEstado(),userAuth.get().getId(), null);
+					
+					if ( userAuth.get().getRol() == 1 || userAuth.get().getRol() == 3 ) {
+						userAuthAccepted.setConfig_ubi(userAuth.get().getConfig_ubi());
+					}
 					
 					return ResponseEntity.status(HttpStatus.ACCEPTED).body(userAuthAccepted);
 					

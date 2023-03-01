@@ -67,7 +67,11 @@ public class UsuarioRestController {
 		UsuarioDto user = new UsuarioDto( oUsuario.get().getNombre(),
 				oUsuario.get().getApellido(), oUsuario.get().getCargo(), oUsuario.get().getImagen(),
 				oUsuario.get().getEdad(), oUsuario.get().getRol(), oUsuario.get().getCorreo(), 
-				oUsuario.get().getEstado(),oUsuario.get().getId());
+				oUsuario.get().getEstado(),oUsuario.get().getId(),null);
+		
+		if (oUsuario.get().getRol() == 1 || oUsuario.get().getRol() == 3 ) {
+			user.setConfig_ubi(oUsuario.get().getConfig_ubi());
+		}
 		
 		return ResponseEntity.ok(user);
 	}

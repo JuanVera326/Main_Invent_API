@@ -20,12 +20,14 @@ public class UsuarioDto {
 	
 	private boolean estado;
 	
+	private String config_ubi;
+	
 	
 	public UsuarioDto(){
 		
 	}
 	
-	public UsuarioDto(String nombre, String apellido, String cargo, String imagen, String edad, int rol, String correo, boolean estado, Long id){
+	public UsuarioDto(String nombre, String apellido, String cargo, String imagen, String edad, int rol, String correo, boolean estado, Long id, String config_ubi){
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -36,6 +38,7 @@ public class UsuarioDto {
 		this.correo = correo;
 		this.estado = estado;
 		this.id = id;
+		this.config_ubi = config_ubi;
 	}
 
 	public Long getId() {
@@ -110,4 +113,12 @@ public class UsuarioDto {
 		this.estado = estado;
 	}
 
+	public String getConfig_ubi() {
+		return config_ubi;
+	}
+
+	public void setConfig_ubi(String config_ubi) {
+		this.config_ubi = config_ubi;
+	}
+	
 }
