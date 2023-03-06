@@ -1,7 +1,6 @@
 package com.mainInvent.api.entity;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -44,14 +43,14 @@ public class UsuarioVo implements Serializable{
 	@Column(name = "estado")
 	private boolean estado;
 	
-	@Column(name = "config_ubi", nullable = true, length = 1000)
-	private String config_ubi;
+	@Column(name = "id_rel_ubi", nullable = true, length = 1000)
+	private String id_rel_ubi;
 	
 	public UsuarioVo(){
 		
 	}
 	
-	public UsuarioVo(String nombre, String apellido, String cargo, String imagen, String edad, int rol, Long id, String password, String correo, boolean estado, String config_ubi){
+	public UsuarioVo(String nombre, String apellido, String cargo, String imagen, String edad, int rol, Long id, String password, String correo, boolean estado, String id_rel_ubi){
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -63,7 +62,7 @@ public class UsuarioVo implements Serializable{
 		this.password = password;
 		this.correo = correo;
 		this.estado = estado;
-		this.config_ubi = config_ubi;
+		this.id_rel_ubi = id_rel_ubi;
 	}
 	
 	public String getImagen() {
@@ -126,10 +125,10 @@ public class UsuarioVo implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getConfig_ubi() {
-		return config_ubi;
+	public String getId_rel_ubi() {
+		return id_rel_ubi;
 	}
-	public void setConfig_ubi(String config_ubi) {
-		this.config_ubi = config_ubi;
+	public void setId_rel_ubi(String id_rel_ubi) {
+		this.id_rel_ubi = id_rel_ubi;
 	}
 }

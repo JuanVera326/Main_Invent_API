@@ -70,7 +70,7 @@ public class UsuarioRestController {
 				oUsuario.get().getEstado(),oUsuario.get().getId(),null);
 		
 		if (oUsuario.get().getRol() == 1 || oUsuario.get().getRol() == 3 ) {
-			user.setConfig_ubi(oUsuario.get().getConfig_ubi());
+			user.setConfig_ubi(oUsuario.get().getId_rel_ubi());
 		}
 		
 		return ResponseEntity.ok(user);
