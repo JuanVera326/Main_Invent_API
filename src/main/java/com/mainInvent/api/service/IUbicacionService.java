@@ -5,7 +5,6 @@ import java.util.Optional;
 import com.mainInvent.api.entity.UbicacionVo;
 
 public interface IUbicacionService {
-
 	
 	public Iterable<UbicacionVo> findAll();
 	

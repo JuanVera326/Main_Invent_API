@@ -16,13 +16,13 @@ public class UbicacionVo implements Serializable{
 	@Column(name = "id_rel_ubi", nullable = false )
 	private Long id_rel_ubi;
 	
-	@Column(name = "sectors", nullable = false , length = 5)
+	@Column(name = "sectors", length = 5)
 	private int sectors;
 	
-	@Column(name = "warehouses", nullable = false , length = 5)
+	@Column(name = "warehouses", length = 5)
 	private int warehouses;
 	
-	@Column(name = "racks", nullable = false , length = 5)
+	@Column(name = "racks", length = 5)
 	private int racks;
 	
 	

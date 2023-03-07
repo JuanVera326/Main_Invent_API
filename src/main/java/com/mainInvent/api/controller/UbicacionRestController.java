@@ -5,17 +5,23 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.mainInvent.api.entity.UbicacionVo;
 import com.mainInvent.api.entity.UsuarioVo;
 import com.mainInvent.api.service.IUbicacionService;
 import com.mainInvent.api.service.IUsuarioService;
 
+@RestController
+@RequestMapping("/api")
+@CrossOrigin(origins = {"*"})
 public class UbicacionRestController {
 	
 	@Autowired
@@ -50,7 +56,7 @@ public class UbicacionRestController {
 		Optional<UbicacionVo> ubi = ubiService.findByID(id);
 		
 		if (!ubi.isPresent()){
-			String msj = "Ubicacion no con Id relacionado no Existe";
+			String msj = "Ubicacion con Id relacionado no Existe";
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msj);
 		}
 		
