@@ -42,6 +42,10 @@ public class MainInventAuth {
 				
 				if (user.getPassword().equals(userAuth.get().getPassword())) {
 					
+					if ( userAuth.get().getEstado() == false ) {
+						return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Su usuario esta desactivado temporalmente.");
+					}
+					
 					UsuarioDto userAuthAccepted = new UsuarioDto( userAuth.get().getNombre(),
 							userAuth.get().getApellido(), userAuth.get().getCargo(), userAuth.get().getImagen(),
 							userAuth.get().getEdad(), userAuth.get().getRol(), userAuth.get().getCorreo(), 

@@ -1,6 +1,9 @@
 package com.mainInvent.api.controller;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -81,5 +84,12 @@ public class UbicacionRestController {
 		ubiService.deleteById(id);
 		
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body("Eliminado");
+	}
+	@GetMapping("/ubi")
+	public List<UbicacionVo> getAllUbis(){
+		
+		List<UbicacionVo> ubiList = StreamSupport
+				.stream(ubiService.findAll().spliterator(), false).collect(Collectors.toList());
+		return ubiList;
 	}
 }
