@@ -71,4 +71,10 @@ public class UsuarioServiceImpl implements IUsuarioService{
 		return repoUsuario.findByGeneralID(id);
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public Optional<UsuarioVo> findAdmin(int rol) {
+		return repoUsuario.findByRol(rol);
+	}
+
 }

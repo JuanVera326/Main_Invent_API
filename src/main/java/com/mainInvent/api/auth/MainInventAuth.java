@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mainInvent.api.InitialConstructorService;
 import com.mainInvent.api.dto.AuthDto;
 import com.mainInvent.api.dto.UsuarioDto;
 import com.mainInvent.api.entity.UsuarioVo;
@@ -28,6 +29,29 @@ public class MainInventAuth {
 	@PostMapping("/auth")
 	public ResponseEntity<?> setAuth(@RequestBody AuthDto user){
 		
+		InitialConstructorService constructorService = new InitialConstructorService();
+		
+		Optional<UsuarioVo> admin = authUser.findAdmin(1);
+		
+		if (!admin.isPresent()) {
+			
+			UsuarioVo adminVo = new UsuarioVo();
+			
+			adminVo.setId(Long.parseLong("" + 1));
+			adminVo.setNombre("Administrador");
+			adminVo.setApellido("Invent");
+			adminVo.setCargo("admin");
+			adminVo.setCorreo("admin@admin.com");
+			adminVo.setEdad("99");
+			adminVo.setEstado(true);
+			adminVo.setId_rel_ubi(null);
+			adminVo.setImagen("http://res.cloudinary.com/dnkn5kpmx/image/upload/v1678824857/usuarios_main_invent/lwhd50nuwquytzku2nyt.jpg");
+			adminVo.setRol(1);
+			adminVo.setPassword(constructorService.wordEncoder("0000"));
+			
+			authUser.save(adminVo);
+		}
+		
 		Optional<UsuarioVo> userAuth = authUser.encontrarPorCorreo(user.getEmail());
 		
 		try {
@@ -39,8 +63,7 @@ public class MainInventAuth {
 				
 			}else {
 				
-				
-				if (user.getPassword().equals(userAuth.get().getPassword())) {
+				if (user.getPassword().equals(constructorService.wordDecoder(userAuth.get().getPassword()))) {
 					
 					if ( userAuth.get().getEstado() == false ) {
 						return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Su usuario esta desactivado temporalmente.");

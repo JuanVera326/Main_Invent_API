@@ -5,7 +5,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-//import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mainInvent.api.InitialConstructorService;
 import com.mainInvent.api.dto.UsuarioDto;
 import com.mainInvent.api.entity.UsuarioVo;
 import com.mainInvent.api.service.IUsuarioService;
@@ -33,6 +33,8 @@ public class UsuarioRestController {
 	private IUsuarioService usuarioService;
 	
 	String acces_key = "bWF0aWFzLm1hL25zZnc=";
+	
+	InitialConstructorService constructorService = new InitialConstructorService();
 	
 	@PostMapping("/usuarios/{keys}")
 	public ResponseEntity<?> saveNewUsuario(@RequestBody UsuarioVo usuario, @PathVariable String keys){
@@ -49,7 +51,23 @@ public class UsuarioRestController {
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msj);
 		}
 		
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body(usuarioService.save(usuario));
+		String ps = constructorService.wordEncoder(usuario.getPassword());
+		
+		UsuarioVo userdata = new UsuarioVo(
+				usuario.getNombre(),
+				usuario.getApellido(),
+				usuario.getCargo(),
+				usuario.getImagen(),
+				usuario.getEdad(),
+				usuario.getRol(),
+				usuario.getId(),
+				ps,
+				usuario.getCorreo(),
+				usuario.getEstado(),
+				usuario.getId_rel_ubi()
+		);
+		
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(usuarioService.save(userdata));
 	
 	}
 	
@@ -92,7 +110,6 @@ public class UsuarioRestController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msj);
 		}
 		
-		//BeanUtils.copyProperties(usuario, usuarioOpti.getClass());
 		
 		usuarioOpti.get().setNombre(usuario.getNombre());
 		usuarioOpti.get().setApellido(usuario.getApellido());
@@ -102,7 +119,7 @@ public class UsuarioRestController {
 		usuarioOpti.get().setImagen(usuario.getImagen());
 		usuarioOpti.get().setRol(usuario.getRol());
 		usuarioOpti.get().setEstado(usuario.getEstado());
-		usuarioOpti.get().setPassword(usuario.getPassword());
+		usuarioOpti.get().setPassword(constructorService.wordEncoder(usuario.getPassword()));
 		
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(usuarioService.save(usuarioOpti.get()));
 	}
