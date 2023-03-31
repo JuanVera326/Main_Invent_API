@@ -65,8 +65,8 @@ public class ElectricosRestController {
 		return ResponseEntity.ok(oElectricos);
 	}
 	
-	@PutMapping("/electricos/{id}/{keys}")
-	public ResponseEntity<?> updateElectricos(@RequestBody ElectricosVo electricos, @PathVariable(value = "id") Long electricos_id, @PathVariable String keys){
+	@PutMapping("/electricos/{id}/{keys}/{doc}")
+	public ResponseEntity<?> updateElectricos(@RequestBody ElectricosVo electricos, @PathVariable(value = "id") Long electricos_id, @PathVariable String keys, @PathVariable String doc){
 		
 		if (!keys.equals(acces_key)) {
 			String msj = "No Autorizado";
@@ -82,7 +82,7 @@ public class ElectricosRestController {
 		
 		Optional<ElectricosVo> opElectric = electricosService.encontrarPorNombreItem(electricos.getNombre_parte_electricos());
 		
-		if (opElectric.isPresent()) {
+		if (opElectric.isPresent() && doc.equalsIgnoreCase("")) {
 			String msj = "El item de categoria Electricos ya esta registrado con este Nombre";
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(msj);
 		}
