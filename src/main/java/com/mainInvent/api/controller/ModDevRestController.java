@@ -64,8 +64,8 @@ public class ModDevRestController {
 		return ResponseEntity.ok(modO);
 	} 
 	
-	@PutMapping("/moddev/{id}/{keys}")
-	public ResponseEntity<?> updateModdev(@RequestBody ModDevVo moddev, @PathVariable(value = "id") Long moddev_id, @PathVariable String keys){
+	@PutMapping("/moddev/{id}/{keys}/{doc}")
+	public ResponseEntity<?> updateModdev(@RequestBody ModDevVo moddev, @PathVariable(value = "id") Long moddev_id, @PathVariable String keys, @PathVariable String doc){
 		
 		if (!keys.equals(acces_key)) {
 			String msj = "No Autorizado";
@@ -74,7 +74,7 @@ public class ModDevRestController {
 		
 		Optional<ModDevVo> moddevOpti = modDevService.findByID(moddev_id);
 		
-		if (!moddevOpti.isPresent()) {
+		if (!moddevOpti.isPresent() && doc.equalsIgnoreCase("")) {
 			String msj = "El item de categoria Modulo de Desarrollo con id "+ moddev_id +" no esta registrado";
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msj);
 		}

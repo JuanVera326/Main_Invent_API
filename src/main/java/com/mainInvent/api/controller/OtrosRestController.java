@@ -65,8 +65,8 @@ public class OtrosRestController {
 		return ResponseEntity.ok(oOtros);
 	}
 	
-	@PutMapping("/otros/{id}/{keys}")
-	public ResponseEntity<?> updateOtros(@RequestBody OtrosVo otros, @PathVariable(value = "id") Long otros_id, @PathVariable String keys){
+	@PutMapping("/otros/{id}/{keys}/{doc}")
+	public ResponseEntity<?> updateOtros(@RequestBody OtrosVo otros, @PathVariable(value = "id") Long otros_id, @PathVariable String keys, @PathVariable String doc){
 		
 		if (!keys.equals(acces_key)) {
 			String msj = "No Autorizado";
@@ -75,7 +75,7 @@ public class OtrosRestController {
 	
 		Optional<OtrosVo> otrosOpti = otrosService.findByID(otros_id);
 		
-		if (!otrosOpti.isPresent()) {
+		if (!otrosOpti.isPresent()  && doc.equalsIgnoreCase("")) {
 			String msj = "El item de categoria Otro con id "+ otros_id +" no esta registrado";
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msj);
 		}

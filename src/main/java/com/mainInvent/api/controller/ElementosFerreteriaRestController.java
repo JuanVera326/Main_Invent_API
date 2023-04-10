@@ -63,8 +63,8 @@ public class ElementosFerreteriaRestController {
 		return ResponseEntity.ok(oOtros);
 	} 
 	
-	@PutMapping("/eleferre/{id}/{keys}")
-	public ResponseEntity<?> updateEleFerre(@RequestBody ElementosFerrerteriaVo eleferre, @PathVariable(value = "id") Long eleferre_id, @PathVariable String keys){
+	@PutMapping("/eleferre/{id}/{keys}/{doc}")
+	public ResponseEntity<?> updateEleFerre(@RequestBody ElementosFerrerteriaVo eleferre, @PathVariable(value = "id") Long eleferre_id, @PathVariable String keys, @PathVariable String doc){
 		
 		if (!keys.equals(acces_key)) {
 			String msj = "No Autorizado";
@@ -73,7 +73,7 @@ public class ElementosFerreteriaRestController {
 		
 		Optional<ElementosFerrerteriaVo> eleferreOpti = eleFerreService.findByID(eleferre_id);
 		
-		if (!eleferreOpti.isPresent()) {
+		if (!eleferreOpti.isPresent() && doc.equalsIgnoreCase("")) {
 			String msj = "El item de categoria Elementos Ferrerteria con id "+ eleferre_id +" no esta registrado";
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msj);
 		}

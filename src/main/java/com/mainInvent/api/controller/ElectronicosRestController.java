@@ -70,8 +70,8 @@ public class ElectronicosRestController {
 		return ResponseEntity.ok(electronicosOp);
   }
   
-  @PutMapping("/electronicos/{id}/{keys}")
-  public ResponseEntity<?> updateElectronicos(@RequestBody ElectronicosVo electronicos, @PathVariable(value = "id") Long electronicos_id, @PathVariable String keys){
+  @PutMapping("/electronicos/{id}/{keys}/{doc}")
+  public ResponseEntity<?> updateElectronicos(@RequestBody ElectronicosVo electronicos, @PathVariable(value = "id") Long electronicos_id, @PathVariable String keys, @PathVariable String doc){
 	  
 	  if (!keys.equals(acces_key)) {
 			String msj = "No Autorizado";
@@ -80,7 +80,7 @@ public class ElectronicosRestController {
 	  
 	  Optional<ElectronicosVo> electronicosOpti = electronicosService.findByID(electronicos_id);
 		
-		if (!electronicosOpti.isPresent()) {
+		if (!electronicosOpti.isPresent() && doc.equalsIgnoreCase("")) {
 			String msj = "El item de categoria Electronicos con id "+ electronicos_id +" no esta registrado";
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msj);
 		}
