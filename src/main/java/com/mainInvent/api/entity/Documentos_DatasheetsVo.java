@@ -1,7 +1,6 @@
 package com.mainInvent.api.entity;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -50,11 +49,6 @@ public class Documentos_DatasheetsVo implements Serializable{
 
 	public void setFile(byte[] file) {
 		this.file = file;
-	}
-	
-	@Override
-	public String toString() {
-		return "Documentos_DatasheetsVo [id_doc=" + id_doc + ", file=" + Arrays.toString(file) + "]";
 	}
 
 }

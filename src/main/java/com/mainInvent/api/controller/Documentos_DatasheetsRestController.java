@@ -1,13 +1,12 @@
 package com.mainInvent.api.controller;
 
-import java.io.ByteArrayInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -83,26 +82,7 @@ public class Documentos_DatasheetsRestController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msj);
 		}
 		
-		try {
-			
-			byte[] arr = file.get().getFile();
-			InputStream bos =  new ByteArrayInputStream(arr);
-			int size = bos.available();
-			byte[] dataPDF = new byte[size];
-			bos.read(dataPDF,0,size);
-			
-			OutputStream out = new FileOutputStream("dtsh.pdf");
-			out.write(dataPDF);
-			
-			return ResponseEntity.status(HttpStatus.ACCEPTED).body(out);
-			
-		} catch (Exception e) {
-			
-			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e);
-			
-		}
-		
-		
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(file);
 	}
 	
 	@DeleteMapping("/files/{id}/{keys}")
